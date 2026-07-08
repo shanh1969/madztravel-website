@@ -501,13 +501,12 @@
 </footer>
 
 <script>
-  /* ====== EDIT THIS ONE LINE: your client-login (portal) URL ======
-     This points at her CUSTOMER account portal (public customer login →
-     dashboard), which is the correct target for a "My Trips" button.
-     Format: https://smarterflow.ca/travel/<AGENCY_SLUG>/account
-     ⚠️ Confirm the production agency slug for Madz Travel & Tours and
-     replace <AGENCY_SLUG> below (best guess: "madztravel"). */
-  const MY_TRIPS_URL = "https://smarterflow.ca/travel/madztravel/account";
+  /* ====== EDIT THIS ONE LINE: the portal sign-in URL ======
+     Points at Madz's LIVE agent portal on production (she signs in here to
+     manage bookings/leads/etc.). Verified working at smarterflow.ca.
+     LATER (when the customer-facing portal is set up in production), switch
+     this to the customer login: https://smarterflow.ca/travel/<slug>/account */
+  const MY_TRIPS_URL = "https://smarterflow.ca/app/tenant/85902f42-6ce0-4883-bf4a-e2eda92f8618/travel";
   /* ================================================================ */
 
   document.querySelectorAll('[data-mytrips]').forEach(function(a){
