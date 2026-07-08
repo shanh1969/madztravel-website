@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Madz Travel — Dream · Explore · Discover</title>
+<meta name="description" content="Madz Travel — TICO-certified luxury travel advisor in Toronto. Vacation packages, hotels & resorts, cruises, group travel and flights. We'll take you there." />
+
+<!-- ============================================================
+     MADZ TRAVEL  —  single-file website for GoDaddy (madztravel.ca)
+     Just upload this file as index.html.
+     To change the client login link, edit MY_TRIPS_URL below (one place).
+     ============================================================ -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --navy:#0A1E3F;
+    --navy-deep:#06152E;
+    --navy-soft:#12294f;
+    --gold:#C8A24C;
+    --gold-light:#E7CB86;
+    --gold-deep:#A67F32;
+    --cream:#F7F3EA;
+    --cream-dim:#E8E0CF;
+    --ink:#0C1424;
+    --white:#ffffff;
+    --maxw:1180px;
+    --ease:cubic-bezier(.22,.61,.36,1);
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Jost',sans-serif;
+    background:var(--navy-deep);
+    color:var(--cream);
+    line-height:1.65;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4{font-family:'Cormorant Garamond',serif;font-weight:600;line-height:1.08;letter-spacing:.005em}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  ::selection{background:var(--gold);color:var(--navy-deep)}
+
+  /* grain overlay */
+  body::after{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.035;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+
+  .eyebrow{
+    font-family:'Jost',sans-serif;font-weight:500;font-size:.72rem;
+    letter-spacing:.42em;text-transform:uppercase;color:var(--gold);
+    display:inline-flex;align-items:center;gap:14px;
+  }
+  .eyebrow::before,.eyebrow.center::after{content:"";width:34px;height:1px;background:linear-gradient(90deg,transparent,var(--gold))}
+  .eyebrow.center::before{background:linear-gradient(90deg,var(--gold),transparent)}
+
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;
+    font-family:'Jost',sans-serif;font-weight:500;font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;
+    padding:15px 30px;border-radius:2px;cursor:pointer;border:1px solid transparent;
+    transition:all .4s var(--ease);white-space:nowrap;
+  }
+  .btn-gold{background:linear-gradient(135deg,var(--gold-light),var(--gold));color:var(--navy-deep);box-shadow:0 12px 34px -14px rgba(200,162,76,.7)}
+  .btn-gold:hover{transform:translateY(-3px);box-shadow:0 20px 44px -14px rgba(200,162,76,.9)}
+  .btn-ghost{border-color:rgba(200,162,76,.5);color:var(--gold-light)}
+  .btn-ghost:hover{background:rgba(200,162,76,.12);border-color:var(--gold)}
+
+  /* ---------- NAV ---------- */
+  header.nav{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    padding:22px 0;transition:all .45s var(--ease);
+    background:transparent;
+  }
+  header.nav.scrolled{
+    padding:12px 0;background:rgba(6,21,46,.82);backdrop-filter:blur(14px);
+    border-bottom:1px solid rgba(200,162,76,.18);
+  }
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:24px}
+  .brand{display:flex;align-items:center;gap:14px}
+  .brand .mono{
+    font-family:'Cormorant Garamond',serif;font-weight:700;font-size:1.7rem;letter-spacing:.02em;
+    color:var(--gold-light);line-height:1;
+    border:1.5px solid var(--gold);border-radius:3px;padding:6px 10px 3px;
+  }
+  .brand .txt{display:flex;flex-direction:column;line-height:1.05}
+  .brand .txt b{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:1.25rem;color:var(--cream);letter-spacing:.03em}
+  .brand .txt span{font-size:.56rem;letter-spacing:.42em;text-transform:uppercase;color:var(--gold)}
+  nav ul{display:flex;align-items:center;gap:34px;list-style:none}
+  nav ul a{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--cream-dim);position:relative;padding:4px 0;transition:color .3s}
+  nav ul a::after{content:"";position:absolute;left:0;bottom:-2px;width:0;height:1px;background:var(--gold);transition:width .35s var(--ease)}
+  nav ul a:hover{color:var(--gold-light)}
+  nav ul a:hover::after{width:100%}
+  .nav-cta{display:flex;align-items:center;gap:16px}
+  .nav-login{font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-light);border:1px solid rgba(200,162,76,.45);padding:9px 20px;border-radius:2px;transition:all .35s}
+  .nav-login:hover{background:var(--gold);color:var(--navy-deep)}
+  .burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px}
+  .burger span{width:26px;height:2px;background:var(--gold-light);transition:.3s}
+
+  /* ---------- HERO ---------- */
+  .hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden;
+    background:
+      radial-gradient(120% 90% at 82% 12%,rgba(18,41,79,.9),transparent 60%),
+      radial-gradient(90% 70% at 8% 100%,rgba(200,162,76,.10),transparent 55%),
+      linear-gradient(160deg,var(--navy) 0%,var(--navy-deep) 70%);
+  }
+  .hero .globe-lines{position:absolute;inset:0;opacity:.14;pointer-events:none}
+  .compass{position:absolute;top:14%;right:6%;width:min(38vw,440px);opacity:.16;animation:spin 90s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .flightpath{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;opacity:.55}
+  .flightpath path{stroke-dasharray:6 10;animation:dash 40s linear infinite}
+  @keyframes dash{to{stroke-dashoffset:-800}}
+
+  .hero-inner{position:relative;z-index:3;padding:150px 0 90px}
+  .hero .eyebrow{margin-bottom:26px;opacity:0;animation:rise .9s var(--ease) .1s forwards}
+  .hero h1{
+    font-size:clamp(3.1rem,9vw,7.4rem);color:var(--white);margin-bottom:10px;
+    text-shadow:0 20px 60px rgba(0,0,0,.4);
+  }
+  .hero h1 .line{display:block;overflow:hidden}
+  .hero h1 .line i{display:block;font-style:normal;opacity:0;transform:translateY(105%);animation:rise 1s var(--ease) forwards}
+  .hero h1 .gold{color:transparent;background:linear-gradient(120deg,var(--gold-light),var(--gold) 55%,var(--gold-deep));-webkit-background-clip:text;background-clip:text;font-style:italic;font-weight:500}
+  .hero p.lede{max-width:530px;font-size:1.14rem;color:var(--cream-dim);font-weight:300;margin:26px 0 40px;opacity:0;animation:rise 1s var(--ease) .8s forwards}
+  .hero .cta-row{display:flex;gap:16px;flex-wrap:wrap;opacity:0;animation:rise 1s var(--ease) 1s forwards}
+  @keyframes rise{to{opacity:1;transform:translateY(0)}}
+
+  .hero .scroll-cue{position:absolute;bottom:34px;left:50%;transform:translateX(-50%);z-index:4;display:flex;flex-direction:column;align-items:center;gap:10px;opacity:.6}
+  .hero .scroll-cue span{font-size:.62rem;letter-spacing:.4em;text-transform:uppercase;color:var(--gold)}
+  .hero .scroll-cue i{width:1px;height:44px;background:linear-gradient(var(--gold),transparent);animation:cue 2s ease-in-out infinite}
+  @keyframes cue{0%,100%{transform:scaleY(.4);opacity:.3;transform-origin:top}50%{transform:scaleY(1);opacity:1;transform-origin:top}}
+
+  .trustbar{position:relative;z-index:3;border-top:1px solid rgba(200,162,76,.16);border-bottom:1px solid rgba(200,162,76,.16);background:rgba(6,21,46,.4)}
+  .trustbar .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:22px;padding-top:22px;padding-bottom:22px}
+  .trustbar div{display:flex;align-items:center;gap:12px;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--cream-dim)}
+  .trustbar svg{width:20px;height:20px;stroke:var(--gold);fill:none;flex:none}
+
+  /* ---------- SECTION HEADERS ---------- */
+  section{position:relative}
+  .sec-head{text-align:center;max-width:640px;margin:0 auto 60px}
+  .sec-head h2{font-size:clamp(2.3rem,5vw,3.6rem);color:var(--cream);margin:18px 0 16px}
+  .sec-head h2 em{font-style:italic;color:var(--gold-light);font-weight:500}
+  .sec-head p{color:var(--cream-dim);font-weight:300;font-size:1.05rem}
+
+  .pad{padding:120px 0}
+
+  /* ---------- SERVICES ---------- */
+  .services{background:linear-gradient(180deg,var(--navy-deep),var(--navy))}
+  .svc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1px;background:rgba(200,162,76,.16);border:1px solid rgba(200,162,76,.16)}
+  .svc{background:var(--navy);padding:46px 30px;transition:all .5s var(--ease);position:relative;overflow:hidden}
+  .svc::before{content:"";position:absolute;inset:0;background:linear-gradient(160deg,rgba(200,162,76,.14),transparent 60%);opacity:0;transition:opacity .5s}
+  .svc:hover{background:var(--navy-soft);transform:translateY(-4px)}
+  .svc:hover::before{opacity:1}
+  .svc .ic{width:52px;height:52px;margin-bottom:24px;stroke:var(--gold-light);fill:none;stroke-width:1.3}
+  .svc h3{font-size:1.55rem;color:var(--cream);margin-bottom:10px}
+  .svc p{font-size:.92rem;color:var(--cream-dim);font-weight:300}
+  .svc .num{position:absolute;top:20px;right:24px;font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--gold);opacity:.5}
+
+  /* ---------- ABOUT / ADVISOR ---------- */
+  .about{background:var(--cream);color:var(--ink)}
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+  .advisor-card{position:relative;background:linear-gradient(160deg,var(--navy),var(--navy-deep));border-radius:6px;padding:54px 46px;color:var(--cream);overflow:hidden;box-shadow:0 40px 80px -30px rgba(10,30,63,.6)}
+  .advisor-card .compass-sm{position:absolute;top:-30px;right:-30px;width:180px;opacity:.14}
+  .advisor-card .mono{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:2.6rem;color:var(--gold-light);border:2px solid var(--gold);border-radius:5px;display:inline-block;padding:8px 16px 4px;margin-bottom:24px}
+  .advisor-card h3{font-size:2rem;color:var(--white);margin-bottom:4px}
+  .advisor-card .role{font-size:.72rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);margin-bottom:24px}
+  .advisor-card .aff{display:flex;align-items:center;gap:10px;font-size:.8rem;letter-spacing:.1em;color:var(--cream-dim);border-top:1px solid rgba(200,162,76,.25);padding-top:22px;margin-top:8px}
+  .advisor-card .aff b{color:var(--gold-light);letter-spacing:.14em}
+  .about .eyebrow{color:var(--gold-deep)}
+  .about .eyebrow::before{background:linear-gradient(90deg,transparent,var(--gold-deep))}
+  .about h2{font-size:clamp(2.2rem,4.5vw,3.4rem);color:var(--navy);margin:18px 0 22px}
+  .about h2 em{font-style:italic;color:var(--gold-deep);font-weight:500}
+  .about p{color:#3a4455;font-weight:300;font-size:1.06rem;margin-bottom:18px}
+  .about .sign{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:2rem;color:var(--navy);margin-top:10px}
+  .promises{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+  .promises span{font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--navy);border:1px solid var(--gold);border-radius:40px;padding:9px 18px;background:rgba(200,162,76,.1)}
+
+  /* ---------- AI ASSISTANT ---------- */
+  .ai{background:linear-gradient(160deg,var(--navy) 0%,var(--navy-deep) 100%);position:relative;overflow:hidden}
+  .ai::before{content:"";position:absolute;top:-40%;left:-10%;width:60%;height:180%;background:radial-gradient(closest-side,rgba(200,162,76,.14),transparent);pointer-events:none}
+  .ai-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:56px;align-items:center;position:relative;z-index:2}
+  .ai h2{font-size:clamp(2.2rem,4.6vw,3.4rem);color:var(--cream);margin:18px 0 20px}
+  .ai h2 em{font-style:italic;color:var(--gold-light);font-weight:500}
+  .ai p{color:var(--cream-dim);font-weight:300;font-size:1.06rem;margin-bottom:16px;max-width:520px}
+  .ai .feat{display:flex;gap:14px;margin:14px 0;align-items:flex-start}
+  .ai .feat svg{width:22px;height:22px;stroke:var(--gold);fill:none;flex:none;margin-top:3px}
+  .ai .feat b{color:var(--cream);font-weight:500}
+  .ai-visual{position:relative;display:flex;justify-content:center}
+  .chat{background:rgba(247,243,234,.04);border:1px solid rgba(200,162,76,.28);border-radius:14px;padding:26px;width:100%;max-width:360px;backdrop-filter:blur(6px);box-shadow:0 40px 90px -40px rgba(0,0,0,.7)}
+  .chat .top{display:flex;align-items:center;gap:12px;padding-bottom:18px;border-bottom:1px solid rgba(200,162,76,.2);margin-bottom:18px}
+  .chat .bot{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--gold-light),var(--gold));display:flex;align-items:center;justify-content:center;font-size:1.2rem}
+  .chat .top b{color:var(--cream);font-weight:500;font-size:.95rem}
+  .chat .top .on{font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:#7fd18a;display:flex;align-items:center;gap:6px}
+  .chat .top .on::before{content:"";width:7px;height:7px;border-radius:50%;background:#7fd18a;box-shadow:0 0 8px #7fd18a}
+  .bub{font-size:.9rem;font-weight:300;padding:11px 15px;border-radius:12px;margin-bottom:10px;max-width:88%}
+  .bub.them{background:rgba(255,255,255,.06);color:var(--cream-dim);border-top-left-radius:3px}
+  .bub.me{background:linear-gradient(135deg,var(--gold),var(--gold-deep));color:var(--navy-deep);margin-left:auto;border-top-right-radius:3px;font-weight:400}
+
+  /* ---------- MY TRIPS / PORTAL ---------- */
+  .portal{background:var(--cream);color:var(--ink);text-align:center}
+  .portal-card{max-width:820px;margin:0 auto;background:linear-gradient(160deg,var(--navy),var(--navy-deep));border-radius:8px;padding:70px 50px;color:var(--cream);position:relative;overflow:hidden;box-shadow:0 50px 100px -40px rgba(10,30,63,.5)}
+  .portal-card .compass-sm{position:absolute;bottom:-50px;right:-40px;width:220px;opacity:.1}
+  .portal-card .eyebrow{color:var(--gold);justify-content:center}
+  .portal-card h2{font-size:clamp(2.2rem,5vw,3.4rem);color:var(--white);margin:18px 0 18px}
+  .portal-card h2 em{font-style:italic;color:var(--gold-light);font-weight:500}
+  .portal-card p{color:var(--cream-dim);font-weight:300;max-width:520px;margin:0 auto 32px;font-size:1.05rem}
+  .portal-card .cta-row{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+  .portal-note{font-size:.8rem;color:var(--cream-dim);opacity:.7;margin-top:26px;letter-spacing:.04em}
+
+  /* ---------- CONTACT / FOOTER ---------- */
+  .contact{background:var(--navy-deep);border-top:1px solid rgba(200,162,76,.16)}
+  .contact-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:60px}
+  .contact h2{font-size:clamp(2.2rem,4.6vw,3.2rem);color:var(--cream);margin:18px 0 20px}
+  .contact h2 em{font-style:italic;color:var(--gold-light);font-weight:500}
+  .contact .lede{color:var(--cream-dim);font-weight:300;max-width:440px;margin-bottom:34px}
+  .cinfo{display:flex;flex-direction:column;gap:8px}
+  .cinfo a,.cinfo div{display:flex;align-items:center;gap:16px;padding:16px 0;border-bottom:1px solid rgba(200,162,76,.14);transition:all .3s}
+  .cinfo a:hover{padding-left:8px}
+  .cinfo svg{width:22px;height:22px;stroke:var(--gold);fill:none;flex:none}
+  .cinfo .lbl{font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:2px}
+  .cinfo .val{color:var(--cream);font-size:1.02rem}
+  .contact-form{background:rgba(255,255,255,.03);border:1px solid rgba(200,162,76,.2);border-radius:8px;padding:38px 32px}
+  .contact-form h3{font-size:1.7rem;color:var(--cream);margin-bottom:20px}
+  .field{margin-bottom:16px}
+  .field label{display:block;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+  .field input,.field textarea,.field select{
+    width:100%;background:rgba(6,21,46,.6);border:1px solid rgba(200,162,76,.22);border-radius:3px;
+    padding:13px 15px;color:var(--cream);font-family:'Jost',sans-serif;font-size:.95rem;transition:border .3s;
+  }
+  .field input:focus,.field textarea:focus,.field select:focus{outline:none;border-color:var(--gold)}
+  .field textarea{resize:vertical;min-height:96px}
+  .contact-form .btn-gold{width:100%;justify-content:center;margin-top:6px}
+
+  footer{background:var(--navy-deep);border-top:1px solid rgba(200,162,76,.16);padding:44px 0}
+  .foot{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:20px}
+  .foot .brand .mono{font-size:1.3rem}
+  .foot p{font-size:.8rem;color:var(--cream-dim);opacity:.7}
+  .foot .tico{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:8px}
+
+  .reveal{opacity:0;transform:translateY(34px);transition:all .9s var(--ease)}
+  .reveal.in{opacity:1;transform:none}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media(max-width:900px){
+    .about-grid,.ai-grid,.contact-grid{grid-template-columns:1fr;gap:44px}
+    .ai-visual{order:-1}
+    nav ul,.nav-login{display:none}
+    .burger{display:flex}
+    .mobile-menu{position:fixed;inset:0;z-index:99;background:var(--navy-deep);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;transform:translateY(-100%);transition:transform .5s var(--ease)}
+    .mobile-menu.open{transform:none}
+    .mobile-menu a{font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--cream)}
+    .mobile-menu a.login{color:var(--gold-light);border:1px solid var(--gold);border-radius:3px;padding:12px 30px;font-size:1rem;font-family:'Jost',sans-serif;letter-spacing:.14em;text-transform:uppercase}
+  }
+  @media(max-width:560px){
+    .pad{padding:80px 0}
+    .wrap{padding:0 20px}
+    .hero-inner{padding:130px 0 70px}
+    .advisor-card,.portal-card{padding:40px 26px}
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= NAV ================= -->
+<header class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a href="#top" class="brand">
+      <span class="mono">MBT</span>
+      <span class="txt"><b>Madz Travel</b><span>Dream · Explore · Discover</span></span>
+    </a>
+    <nav>
+      <ul>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#assistant">AI Assistant</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="nav-cta">
+      <a href="#mytrips" class="nav-login" data-mytrips>My Trips ↗</a>
+      <div class="burger" id="burger"><span></span><span></span><span></span></div>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#services">Services</a>
+  <a href="#about">About</a>
+  <a href="#assistant">AI Assistant</a>
+  <a href="#contact">Contact</a>
+  <a href="#mytrips" class="login" data-mytrips>My Trips ↗</a>
+</div>
+
+<!-- ================= HERO ================= -->
+<section class="hero" id="top">
+  <!-- rotating compass -->
+  <svg class="compass" viewBox="0 0 200 200" fill="none" stroke="#C8A24C" stroke-width="1">
+    <circle cx="100" cy="100" r="96"/><circle cx="100" cy="100" r="72"/>
+    <path d="M100 8 L112 100 L100 192 L88 100 Z" fill="#C8A24C" fill-opacity=".3"/>
+    <path d="M8 100 L100 88 L192 100 L100 112 Z" fill="#C8A24C" fill-opacity=".15"/>
+    <text x="100" y="26" fill="#C8A24C" font-size="11" text-anchor="middle" font-family="serif">N</text>
+    <text x="100" y="184" fill="#C8A24C" font-size="11" text-anchor="middle" font-family="serif">S</text>
+    <text x="184" y="104" fill="#C8A24C" font-size="11" text-anchor="middle" font-family="serif">E</text>
+    <text x="16" y="104" fill="#C8A24C" font-size="11" text-anchor="middle" font-family="serif">W</text>
+  </svg>
+  <!-- flight path -->
+  <svg class="flightpath" viewBox="0 0 1440 900" preserveAspectRatio="none">
+    <path d="M-50 720 Q 400 500 760 560 T 1500 300" stroke="#C8A24C" stroke-width="1.2" fill="none"/>
+  </svg>
+
+  <div class="wrap hero-inner">
+    <span class="eyebrow">TICO Certified · Toronto, Canada</span>
+    <h1>
+      <span class="line"><i style="animation-delay:.15s">We'll Take</i></span>
+      <span class="line"><i class="gold" style="animation-delay:.35s">You There</i></span>
+    </h1>
+    <p class="lede">Personalized journeys crafted by a dedicated travel advisor — vacation packages, luxury resorts, cruises and group getaways, planned around you.</p>
+    <div class="cta-row">
+      <a href="#contact" class="btn btn-gold">Plan Your Trip →</a>
+      <a href="#mytrips" class="btn btn-ghost" data-mytrips>My Trips Login</a>
+    </div>
+  </div>
+
+  <div class="scroll-cue"><span>Explore</span><i></i></div>
+</section>
+
+<!-- ================= TRUST BAR ================= -->
+<div class="trustbar">
+  <div class="wrap">
+    <div><svg viewBox="0 0 24 24"><path d="M12 2l7 3v6c0 5-3.5 8-7 9-3.5-1-7-4-7-9V5z"/><path d="M9 12l2 2 4-4"/></svg>TICO Certified</div>
+    <div><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18"/></svg>Serving Canada &amp; Beyond</div>
+    <div><svg viewBox="0 0 24 24"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>Exclusive Travel Deals</div>
+    <div><svg viewBox="0 0 24 24"><path d="M12 2l2.4 7.4H22l-6 4.6 2.3 7.4-6.3-4.6L5.7 21 8 14 2 9.4h7.6z"/></svg>Personalized Service</div>
+  </div>
+</div>
+
+<!-- ================= SERVICES ================= -->
+<section class="services pad" id="services">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow center">What We Do</span>
+      <h2>Every Way to <em>Wander</em></h2>
+      <p>From all-inclusive escapes to once-in-a-lifetime cruises, every trip is booked, protected and personally cared for.</p>
+    </div>
+    <div class="svc-grid reveal">
+      <div class="svc">
+        <span class="num">01</span>
+        <svg class="ic" viewBox="0 0 40 40"><path d="M6 30c4-2 8-2 14 0M20 6c-4 6-4 12 0 18-4-2-8-2-14 0"/><circle cx="28" cy="14" r="5"/><path d="M31 22l4 8"/></svg>
+        <h3>Vacation Packages</h3>
+        <p>All-inclusive sun, sand and city breaks tailored to your budget and bucket list.</p>
+      </div>
+      <div class="svc">
+        <span class="num">02</span>
+        <svg class="ic" viewBox="0 0 40 40"><path d="M5 34V10l14-4v28M19 14h16v20M9 14h2M9 20h2M9 26h2M25 20h2M25 26h2M31 20h2M31 26h2"/></svg>
+        <h3>Hotels &amp; Resorts</h3>
+        <p>Handpicked stays from beachfront villas to five-star city landmarks.</p>
+      </div>
+      <div class="svc">
+        <span class="num">03</span>
+        <svg class="ic" viewBox="0 0 40 40"><path d="M4 28l4-2 4 2 4-2 4 2 4-2 4 2 4-2M8 26l2-9h16l4 9M14 17V9h6v8"/></svg>
+        <h3>Cruises</h3>
+        <p>Ocean and river voyages to the world's most breathtaking coastlines.</p>
+      </div>
+      <div class="svc">
+        <span class="num">04</span>
+        <svg class="ic" viewBox="0 0 40 40"><circle cx="14" cy="13" r="4"/><circle cx="26" cy="13" r="4"/><path d="M6 32c0-5 3.6-8 8-8s8 3 8 8M20 32c0-5 3.6-8 8-8s6 3 6 8"/></svg>
+        <h3>Group Travel</h3>
+        <p>Weddings, family reunions and corporate retreats — coordinated end to end.</p>
+      </div>
+      <div class="svc">
+        <span class="num">05</span>
+        <svg class="ic" viewBox="0 0 40 40"><path d="M6 22l28-9-4 12M6 22l7 4 3 7 4-6M6 22l24-9"/></svg>
+        <h3>Flights</h3>
+        <p>Competitive airfare and seamless connections to anywhere on the map.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ABOUT / ADVISOR ================= -->
+<section class="about pad" id="about">
+  <div class="wrap about-grid">
+    <div class="advisor-card reveal">
+      <svg class="compass-sm" viewBox="0 0 200 200" fill="none" stroke="#C8A24C" stroke-width="1"><circle cx="100" cy="100" r="96"/><circle cx="100" cy="100" r="72"/><path d="M100 8 L112 100 L100 192 L88 100 Z" fill="#C8A24C" fill-opacity=".3"/></svg>
+      <span class="mono">MBT</span>
+      <h3>Madz</h3>
+      <div class="role">Lead Travel Advisor</div>
+      <p style="color:var(--cream-dim);font-weight:300">"Travel is the one thing you buy that makes you richer. My job is to handle every detail so all you have to do is enjoy the journey."</p>
+      <div class="aff">Affiliated with <b>TRAVELONLY®</b></div>
+    </div>
+    <div class="reveal">
+      <span class="eyebrow">Your Advisor</span>
+      <h2>Personal Service, <em>Every Mile</em> of the Way</h2>
+      <p>Madz Travel is a boutique, TICO-certified travel practice based in Toronto and serving clients across Canada and beyond. No call centres, no endless hold music — just one trusted advisor who knows your name and your travel style.</p>
+      <p>Backed by the buying power of TravelOnly, you get exclusive rates and full financial protection, with the personal attention only a dedicated advisor can offer.</p>
+      <div class="promises">
+        <span>Exclusive Deals</span>
+        <span>Special Offers</span>
+        <span>Personalized Service</span>
+        <span>24/7 Support</span>
+      </div>
+      <div class="sign">— Madz</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= AI ASSISTANT ================= -->
+<section class="ai pad" id="assistant">
+  <div class="wrap ai-grid">
+    <div class="reveal">
+      <span class="eyebrow">Always On</span>
+      <h2>Your 24/7 <em>AI Travel Assistant</em></h2>
+      <p>Questions don't keep business hours — and neither do we. Get instant answers about destinations, packages and your bookings, any time of day.</p>
+      <div class="feat"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><div><b>Answers anytime, anywhere.</b> Ask about visas, weather, resorts or pricing 24/7.</div></div>
+      <div class="feat"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H8l-4 4z"/></svg><div><b>Instant trip ideas.</b> Describe your dream getaway and get tailored suggestions.</div></div>
+      <div class="feat"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg><div><b>Seamless hand-off to Madz</b> when you're ready to book with a real person.</div></div>
+      <a href="#contact" class="btn btn-gold" style="margin-top:26px">Ask the Assistant →</a>
+    </div>
+    <div class="ai-visual reveal">
+      <div class="chat">
+        <div class="top">
+          <div class="bot">🤖</div>
+          <div><b>Madz AI Assistant</b><div class="on">Online</div></div>
+        </div>
+        <div class="bub them">Hi! 👋 Where would you like to escape to?</div>
+        <div class="bub me">Somewhere warm in February, all-inclusive 🏝️</div>
+        <div class="bub them">Perfect — Punta Cana &amp; Riviera Maya have amazing deals right now. Want me to have Madz put together options?</div>
+        <div class="bub me">Yes please!</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= MY TRIPS / PORTAL ================= -->
+<section class="portal pad" id="mytrips">
+  <div class="wrap">
+    <div class="portal-card reveal">
+      <svg class="compass-sm" viewBox="0 0 200 200" fill="none" stroke="#C8A24C" stroke-width="1"><circle cx="100" cy="100" r="96"/><circle cx="100" cy="100" r="72"/><path d="M100 8 L112 100 L100 192 L88 100 Z" fill="#C8A24C" fill-opacity=".3"/></svg>
+      <span class="eyebrow center">Client Portal</span>
+      <h2>Your Trips, <em>All in One Place</em></h2>
+      <p>Sign in to view your itineraries, quotes, documents and booking status — anytime, from any device.</p>
+      <div class="cta-row">
+        <a href="#" class="btn btn-gold" data-mytrips>Sign In to My Trips →</a>
+        <a href="#contact" class="btn btn-ghost">New Client? Get Started</a>
+      </div>
+      <p class="portal-note">Secure client login · powered by Madz Travel</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section class="contact pad" id="contact">
+  <div class="wrap contact-grid">
+    <div class="reveal">
+      <span class="eyebrow">Let's Talk</span>
+      <h2>Start Your <em>Next Adventure</em></h2>
+      <p class="lede">Tell me where you dream of going and I'll take care of the rest. Reach out any way you like.</p>
+      <div class="cinfo">
+        <a href="tel:+16478607001"><svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3-8.6A2 2 0 014.1 2h3a2 2 0 012 1.7c.1.9.3 1.8.6 2.6a2 2 0 01-.5 2.1L8.1 9.9a16 16 0 006 6l1.5-1.1a2 2 0 012.1-.5c.8.3 1.7.5 2.6.6a2 2 0 011.7 2z"/></svg><span><span class="lbl">Call or Text</span><span class="val">647-860-7001</span></span></a>
+        <a href="mailto:madz@madztravel.ca"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg><span><span class="lbl">Email</span><span class="val">madz@madztravel.ca</span></span></a>
+        <a href="https://madztravel.ca" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg><span><span class="lbl">Website</span><span class="val">madztravel.ca</span></span></a>
+        <div><svg viewBox="0 0 24 24"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span><span class="lbl">Based In</span><span class="val">Toronto, Ontario · Serving Canada &amp; Beyond</span></span></div>
+      </div>
+    </div>
+
+    <div class="contact-form reveal">
+      <h3>Request a Quote</h3>
+      <form id="quoteForm" action="https://formsubmit.co/madz@madztravel.ca" method="POST">
+        <!-- FormSubmit is a free no-backend email relay; first submission triggers a confirm email. Swap for GoDaddy form if preferred. -->
+        <input type="hidden" name="_subject" value="New trip request from madztravel.ca">
+        <input type="hidden" name="_captcha" value="true">
+        <div class="field"><label>Name</label><input type="text" name="name" required placeholder="Your name"></div>
+        <div class="field"><label>Email</label><input type="email" name="email" required placeholder="you@email.com"></div>
+        <div class="field"><label>Destination</label><input type="text" name="destination" placeholder="Where to?"></div>
+        <div class="field"><label>Trip Type</label>
+          <select name="trip_type">
+            <option>Vacation Package</option><option>Hotel &amp; Resort</option><option>Cruise</option><option>Group Travel</option><option>Flights</option><option>Not sure yet</option>
+          </select>
+        </div>
+        <div class="field"><label>Tell Me More</label><textarea name="message" placeholder="Travel dates, number of travellers, budget…"></textarea></div>
+        <button type="submit" class="btn btn-gold">Send Request →</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="wrap foot">
+    <a href="#top" class="brand"><span class="mono">MBT</span><span class="txt"><b>Madz Travel</b><span>We'll Take You There</span></span></a>
+    <div class="tico"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#C8A24C" stroke-width="1.6"><path d="M12 2l7 3v6c0 5-3.5 8-7 9-3.5-1-7-4-7-9V5z"/><path d="M9 12l2 2 4-4"/></svg>TICO Certified · Affiliated with TravelOnly®</div>
+    <p>© <span id="yr"></span> Madz Travel. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+  /* ====== EDIT THIS ONE LINE: your client-login (portal) URL ======
+     This points at her CUSTOMER account portal (public customer login →
+     dashboard), which is the correct target for a "My Trips" button.
+     Format: https://smarterflow.ca/travel/<AGENCY_SLUG>/account
+     ⚠️ Confirm the production agency slug for Madz Travel & Tours and
+     replace <AGENCY_SLUG> below (best guess: "madztravel"). */
+  const MY_TRIPS_URL = "https://smarterflow.ca/travel/madztravel/account";
+  /* ================================================================ */
+
+  document.querySelectorAll('[data-mytrips]').forEach(function(a){
+    a.setAttribute('href', MY_TRIPS_URL);
+    a.setAttribute('target','_blank');
+    a.setAttribute('rel','noopener');
+  });
+  // the big Sign-In button inside the portal card:
+  document.querySelectorAll('.portal-card .btn-gold').forEach(function(a){
+    a.setAttribute('href', MY_TRIPS_URL); a.setAttribute('target','_blank'); a.setAttribute('rel','noopener');
+  });
+
+  // year
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // nav scroll state
+  const nav = document.getElementById('nav');
+  addEventListener('scroll', function(){ nav.classList.toggle('scrolled', scrollY > 40); });
+
+  // mobile menu
+  const burger = document.getElementById('burger'), mm = document.getElementById('mobileMenu');
+  burger.addEventListener('click', function(){ mm.classList.toggle('open'); });
+  mm.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ mm.classList.remove('open'); }); });
+
+  // reveal on scroll
+  const io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:.14});
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+</script>
+</body>
+</html>
