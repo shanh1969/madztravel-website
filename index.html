@@ -469,12 +469,14 @@
 
     <div class="contact-form reveal">
       <h3>Request a Quote</h3>
-      <form id="quoteForm" action="https://formsubmit.co/madz@madztravel.ca" method="POST">
-        <!-- FormSubmit is a free no-backend email relay; first submission triggers a confirm email. Swap for GoDaddy form if preferred. -->
-        <input type="hidden" name="_subject" value="New trip request from madztravel.ca">
-        <input type="hidden" name="_captcha" value="true">
+      <!-- Submits to the Madz Travel portal (SmarterFlow). Every request becomes a Lead +
+           customer profile, texts Madz, and emails a backup. Handled by JS below. -->
+      <form id="quoteForm" novalidate>
+        <!-- Honeypot: hidden from people; spam bots fill it and get silently dropped. -->
+        <input type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
         <div class="field"><label>Name</label><input type="text" name="name" required placeholder="Your name"></div>
         <div class="field"><label>Email</label><input type="email" name="email" required placeholder="you@email.com"></div>
+        <div class="field"><label>Phone <span style="opacity:.6;font-weight:400">(optional — for a quick text back)</span></label><input type="tel" name="phone" placeholder="(555) 123-4567"></div>
         <div class="field"><label>Destination</label><input type="text" name="destination" placeholder="Where to?"></div>
         <div class="field"><label>Trip Type</label>
           <select name="trip_type">
@@ -483,6 +485,7 @@
         </div>
         <div class="field"><label>Tell Me More</label><textarea name="message" placeholder="Travel dates, number of travellers, budget…"></textarea></div>
         <button type="submit" class="btn btn-gold">Send Request →</button>
+        <p id="quoteMsg" role="status" style="display:none;margin-top:14px;font-weight:500"></p>
       </form>
     </div>
   </div>
@@ -515,6 +518,32 @@
   document.querySelectorAll('.portal-card .btn-gold').forEach(function(a){
     a.setAttribute('href', MY_TRIPS_URL); a.setAttribute('target','_blank'); a.setAttribute('rel','noopener');
   });
+
+  // ===== Request a Quote -> Madz Travel portal (SmarterFlow) =====
+  (function(){
+    var CONTACT_ENDPOINT = "https://us-east1-smarterflowsystem-8fad3.cloudfunctions.net/submitTravelContactForm";
+    var TENANT_ID = "85902f42-6ce0-4883-bf4a-e2eda92f8618";
+    var form = document.getElementById('quoteForm');
+    if(!form) return;
+    var msg = document.getElementById('quoteMsg');
+    function show(t, isErr){ msg.style.display='block'; msg.textContent=t; msg.style.color = isErr ? '#e06a5a' : '#C8A24C'; }
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      var data = {}; new FormData(form).forEach(function(v,k){ data[k]=v; });
+      if(!data.name || !data.email){ show('Please add your name and email.', true); return; }
+      data.tenant_id = TENANT_ID;
+      var btn = form.querySelector('button[type=submit]'); var old = btn.textContent;
+      btn.disabled = true; btn.textContent = 'Sending…';
+      fetch(CONTACT_ENDPOINT, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(data) })
+        .then(function(r){ return r.json().catch(function(){ return {}; }); })
+        .then(function(res){
+          if(res && res.success){ form.reset(); show("Thank you! Madz has your request and will follow up personally — usually within one business day. ✈️", false); }
+          else { show('Sorry, something went wrong. Please email madz@madztravel.ca or call 647-578-7583.', true); }
+        })
+        .catch(function(){ show('Sorry, something went wrong. Please email madz@madztravel.ca or call 647-578-7583.', true); })
+        .finally(function(){ btn.disabled = false; btn.textContent = old; });
+    });
+  })();
 
   // year
   document.getElementById('yr').textContent = new Date().getFullYear();
