@@ -719,12 +719,12 @@
 
   document.querySelectorAll('[data-mytrips]').forEach(function(a){
     a.setAttribute('href', MY_TRIPS_URL);
-    a.setAttribute('target','_blank');
-    a.setAttribute('rel','noopener');
+    a.setAttribute('target','_self');
+    a.removeAttribute('rel');
   });
   // the big Sign-In button inside the portal card:
   document.querySelectorAll('.portal-card .btn-gold').forEach(function(a){
-    a.setAttribute('href', MY_TRIPS_URL); a.setAttribute('target','_blank'); a.setAttribute('rel','noopener');
+    a.setAttribute('href', MY_TRIPS_URL); a.setAttribute('target','_self'); a.removeAttribute('rel');
   });
 
   // ===== Request a Quote -> Madz Travel portal (SmarterFlow) =====
