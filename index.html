@@ -157,8 +157,10 @@
   .hero-shot{position:relative;border-radius:16px;overflow:hidden;
     border:1px solid rgba(200,162,76,.34);box-shadow:0 24px 60px rgba(0,0,0,.55);
     opacity:0;animation:rise 1.1s var(--ease) .55s forwards}
+  /* Both cards are the same 9:10 shape and the same max-width, so they read as a
+     matched pair either side of the headline. */
   .hero-shot.pens{max-width:min(100%,40vh);justify-self:end}
-  .hero-shot.portrait{max-width:min(100%,36vh);justify-self:start;margin-bottom:8vh}
+  .hero-shot.portrait{max-width:min(100%,40vh);justify-self:start}
   .hero-shot img{display:block;width:100%;height:auto}
   .hero-shot .cap{position:absolute;left:0;right:0;bottom:0;padding:16px 14px 12px;
     font-size:.56rem;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);
@@ -518,7 +520,7 @@
       </div>
 
       <figure class="hero-shot portrait">
-        <img src="madz-portrait.jpg" width="800" height="800" loading="eager" decoding="async"
+        <img src="madz-portrait.jpg" width="900" height="1000" loading="eager" decoding="async"
              alt="Madz Gerardo, Lead Travel Advisor at Madz Travel, photographed by an aircraft window">
         <figcaption class="cap">Madz · Lead Travel Advisor</figcaption>
       </figure>
