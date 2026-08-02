@@ -150,7 +150,14 @@
      competing with the photos. */
   .hero-grid{display:grid;grid-template-columns:minmax(0,.82fr) minmax(0,1.55fr) minmax(0,.82fr);
     gap:clamp(20px,3.2vw,52px);align-items:center}
-  .hero-copy{min-width:0}
+  /* Centre the middle column between the two photos. The headline already read as
+     centred while the paragraph and buttons were left-aligned inside the column,
+     which is what made it look off — and centring the buttons also puts them on the
+     same axis as the EXPLORE scroll cue below, which is centred to the page. */
+  .hero-copy{min-width:0;text-align:center}
+  .hero p.lede{margin-left:auto;margin-right:auto}
+  .hero .cta-row{justify-content:center}
+  .hero-inner > .eyebrow{display:flex;justify-content:center}
   /* Sized against viewport HEIGHT, not width: the hero is 100vh, so on a short laptop
      screen the photos shrink instead of colliding with the fixed chat widget in the
      bottom-right corner. */
@@ -496,7 +503,7 @@
   <div class="wrap hero-inner">
     <!-- Eyebrow sits ABOVE the grid: inside the narrower centre column it wrapped
          onto two lines and looked scruffy. -->
-    <span class="eyebrow">TICO Certified · Affiliated with TravelOnly®</span>
+    <span class="eyebrow center">TICO Certified · Affiliated with TravelOnly®</span>
 
     <div class="hero-grid">
 
