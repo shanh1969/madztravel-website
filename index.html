@@ -145,6 +145,24 @@
   @keyframes dash{to{stroke-dashoffset:-800}}
 
   .hero-inner{position:relative;z-index:3;padding:150px 0 90px}
+  /* Hero: pen set (left) · headline (centre) · Madz (right). The compass that used to
+     sit here moved down to the contact section — it was designed as a backdrop and was
+     competing with the photos. */
+  .hero-grid{display:grid;grid-template-columns:minmax(0,.82fr) minmax(0,1.55fr) minmax(0,.82fr);
+    gap:clamp(20px,3.2vw,52px);align-items:center}
+  .hero-copy{min-width:0}
+  /* Sized against viewport HEIGHT, not width: the hero is 100vh, so on a short laptop
+     screen the photos shrink instead of colliding with the fixed chat widget in the
+     bottom-right corner. */
+  .hero-shot{position:relative;border-radius:16px;overflow:hidden;
+    border:1px solid rgba(200,162,76,.34);box-shadow:0 24px 60px rgba(0,0,0,.55);
+    opacity:0;animation:rise 1.1s var(--ease) .55s forwards}
+  .hero-shot.pens{max-width:min(100%,40vh);justify-self:end}
+  .hero-shot.portrait{max-width:min(100%,36vh);justify-self:start;margin-bottom:8vh}
+  .hero-shot img{display:block;width:100%;height:auto}
+  .hero-shot .cap{position:absolute;left:0;right:0;bottom:0;padding:16px 14px 12px;
+    font-size:.56rem;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);
+    background:linear-gradient(transparent,rgba(3,12,28,.88))}
   .hero .eyebrow{margin-bottom:26px;opacity:0;animation:rise .9s var(--ease) .1s forwards}
   .hero h1{
     font-size:clamp(3.1rem,9vw,7.4rem);color:var(--white);margin-bottom:10px;
@@ -240,7 +258,14 @@
   .portal-note{font-size:.8rem;color:var(--cream-dim);opacity:.7;margin-top:26px;letter-spacing:.04em}
 
   /* ---------- CONTACT / FOOTER ---------- */
-  .contact{background:var(--navy-deep);border-top:1px solid rgba(200,162,76,.16)}
+  .contact{background:var(--navy-deep);border-top:1px solid rgba(200,162,76,.16);position:relative;overflow:hidden}
+  /* The hero compass, relocated. "Start Your Next Adventure" is where a compass
+     actually earns its place, and down here it can sit behind the type as a
+     watermark without fighting the hero photos. */
+  .compass--contact{position:absolute;top:50%;right:-7%;transform:translateY(-50%);
+    width:min(46vw,520px);opacity:.09;animation:spin 120s linear infinite;
+    pointer-events:none;z-index:0}
+  .contact .wrap{position:relative;z-index:1}
   .contact-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:60px}
   .contact h2{font-size:clamp(2.2rem,4.6vw,3.2rem);color:var(--cream);margin:18px 0 20px}
   .contact h2 em{font-style:italic;color:var(--gold-light);font-weight:500}
@@ -309,6 +334,12 @@
     .pad{padding:80px 0}
     .wrap{padding:0 20px}
     .hero-inner{padding:130px 0 70px}
+    /* Phone: her portrait FIRST — the face is the trust signal, and most of her
+       traffic is mobile. Then the headline, then the pens. */
+    .hero-grid{grid-template-columns:1fr;gap:28px}
+    .hero-copy{order:2}
+    .hero-shot.portrait{order:1;max-width:230px;margin:0 auto}
+    .hero-shot.pens{order:3;max-width:320px;margin:0 auto}
     .advisor-card,.portal-card{padding:40px 26px}
   }
 </style>
@@ -454,31 +485,44 @@
 
 <!-- ================= HERO ================= -->
 <section class="hero" id="top">
-  <!-- rotating compass -->
-  <svg class="compass" viewBox="0 0 200 200" fill="none" stroke="#C8A24C" stroke-width="1">
-    <circle cx="100" cy="100" r="96"/><circle cx="100" cy="100" r="72"/>
-    <path d="M100 8 L112 100 L100 192 L88 100 Z" fill="#C8A24C" fill-opacity=".3"/>
-    <path d="M8 100 L100 88 L192 100 L100 112 Z" fill="#C8A24C" fill-opacity=".15"/>
-    <text x="100" y="26" fill="#C8A24C" font-size="11" text-anchor="middle" font-family="serif">N</text>
-    <text x="100" y="184" fill="#C8A24C" font-size="11" text-anchor="middle" font-family="serif">S</text>
-    <text x="184" y="104" fill="#C8A24C" font-size="11" text-anchor="middle" font-family="serif">E</text>
-    <text x="16" y="104" fill="#C8A24C" font-size="11" text-anchor="middle" font-family="serif">W</text>
-  </svg>
+  <!-- The rotating compass moved to the contact section — see .compass--contact -->
   <!-- flight path -->
   <svg class="flightpath" viewBox="0 0 1440 900" preserveAspectRatio="none">
     <path d="M-50 720 Q 400 500 760 560 T 1500 300" stroke="#C8A24C" stroke-width="1.2" fill="none"/>
   </svg>
 
   <div class="wrap hero-inner">
+    <!-- Eyebrow sits ABOVE the grid: inside the narrower centre column it wrapped
+         onto two lines and looked scruffy. -->
     <span class="eyebrow">TICO Certified · Affiliated with TravelOnly®</span>
-    <h1>
-      <span class="line"><i style="animation-delay:.15s">We'll Take</i></span>
-      <span class="line"><i class="gold" style="animation-delay:.35s">You There</i></span>
-    </h1>
-    <p class="lede">Personalized journeys crafted by a dedicated travel advisor — vacation packages, luxury resorts, cruises and group getaways, planned around you.</p>
-    <div class="cta-row">
-      <a href="#contact" class="btn btn-gold">Plan Your Trip →</a>
-      <a href="#mytrips" class="btn btn-ghost" data-mytrips>My Trips Login</a>
+
+    <div class="hero-grid">
+
+      <figure class="hero-shot pens">
+        <img src="pens.jpg" width="900" height="1000" loading="eager" decoding="async"
+             alt="Madz Travel branded pen set in a black case engraved &ldquo;We'll Take You There. Madz Travel&rdquo;, with MadzTravel.ca and 647-578-7583 on each pen">
+        <!-- No caption: the case is already engraved "We'll Take You There", and the
+             H1 says it again 40px to the right. Three times is once too many. -->
+      </figure>
+
+      <div class="hero-copy">
+        <h1>
+          <span class="line"><i style="animation-delay:.15s">We'll Take</i></span>
+          <span class="line"><i class="gold" style="animation-delay:.35s">You There</i></span>
+        </h1>
+        <p class="lede">Personalized journeys crafted by a dedicated travel advisor — vacation packages, luxury resorts, cruises and group getaways, planned around you.</p>
+        <div class="cta-row">
+          <a href="#contact" class="btn btn-gold">Plan Your Trip →</a>
+          <a href="#mytrips" class="btn btn-ghost" data-mytrips>My Trips Login</a>
+        </div>
+      </div>
+
+      <figure class="hero-shot portrait">
+        <img src="madz-portrait.jpg" width="800" height="800" loading="eager" decoding="async"
+             alt="Madz Gerardo, Lead Travel Advisor at Madz Travel, photographed by an aircraft window">
+        <figcaption class="cap">Madz · Lead Travel Advisor</figcaption>
+      </figure>
+
     </div>
   </div>
 
@@ -648,6 +692,16 @@
 
 <!-- ================= CONTACT ================= -->
 <section class="contact pad" id="contact">
+  <!-- relocated from the hero (V: pens + portrait now occupy that space) -->
+  <svg class="compass--contact" viewBox="0 0 200 200" fill="none" stroke="#C8A24C" stroke-width="1" aria-hidden="true">
+    <circle cx="100" cy="100" r="96"/><circle cx="100" cy="100" r="72"/>
+    <path d="M100 8 L112 100 L100 192 L88 100 Z" fill="#C8A24C" fill-opacity=".3"/>
+    <path d="M8 100 L100 88 L192 100 L100 112 Z" fill="#C8A24C" fill-opacity=".15"/>
+    <text x="100" y="26" fill="#C8A24C" font-size="11" text-anchor="middle" font-family="serif">N</text>
+    <text x="100" y="184" fill="#C8A24C" font-size="11" text-anchor="middle" font-family="serif">S</text>
+    <text x="184" y="104" fill="#C8A24C" font-size="11" text-anchor="middle" font-family="serif">E</text>
+    <text x="16" y="104" fill="#C8A24C" font-size="11" text-anchor="middle" font-family="serif">W</text>
+  </svg>
   <div class="wrap contact-grid">
     <div class="reveal">
       <span class="eyebrow">Let's Talk</span>
