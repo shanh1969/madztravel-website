@@ -482,7 +482,7 @@
       "name": "How do I get a quote or start planning?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Fill out the Request a Quote form, call or text 647-578-7583, or email madz@madztravel.ca. Madz follows up personally, usually within one business day."
+        "text": "Two easy ways. Fill out the Request a Quote form, or tap the phone button in the corner of the screen and talk to Madz's assistant right now — she'll answer your questions and take down what you're looking for, no waiting. You can also call or text 647-578-7583 or email madz@madztravel.ca. Either way Madz follows up personally, usually within one business day."
       }
     },
     {
@@ -757,7 +757,7 @@
       </details>
       <details class="faq-item">
         <summary><h3>How do I get a quote or start planning?</h3><span class="pm"></span></summary>
-        <div class="ans">Fill out the <a href="#contact">Request a Quote</a> form, call or text <a href="tel:+16475787583">647-578-7583</a>, or email <a href="mailto:madz@madztravel.ca">madz@madztravel.ca</a>. Madz follows up personally, usually within one business day.</div>
+        <div class="ans">Two easy ways. Fill out the <a href="#contact">Request a Quote</a> form — or tap the <a href="#contact" data-talk>phone button in the corner of the screen</a> and talk to Madz&rsquo;s assistant right now: she&rsquo;ll answer your questions and take down what you&rsquo;re looking for, no waiting. You can also call or text <a href="tel:+16475787583">647-578-7583</a> or email <a href="mailto:madz@madztravel.ca">madz@madztravel.ca</a>. Either way Madz follows up personally, usually within one business day.</div>
       </details>
       <details class="faq-item">
         <summary><h3>Is my trip financially protected?</h3><span class="pm"></span></summary>
@@ -860,6 +860,19 @@
     a.setAttribute('href', MY_TRIPS_URL);
     a.setAttribute('target','_self');
     a.removeAttribute('rel');
+  });
+
+  /* "tap the phone button in the corner" (FAQ) opens the assistant right there, so the
+     sentence does not ask the reader to go hunting for a button. The href stays #contact
+     as the fallback: if the widget script is blocked or slow, the link still lands the
+     visitor on the quote form rather than doing nothing. */
+  document.querySelectorAll('[data-talk]').forEach(function(a){
+    a.addEventListener('click', function(e){
+      if (window.SmarterFlowChat && window.SmarterFlowChat.open) {
+        e.preventDefault();
+        window.SmarterFlowChat.open();
+      }
+    });
   });
   // the big Sign-In button inside the portal card:
   document.querySelectorAll('.portal-card .btn-gold').forEach(function(a){
