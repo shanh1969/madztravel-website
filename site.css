@@ -57,6 +57,22 @@ header.nav{position:sticky;top:0;z-index:100;background:rgba(6,21,46,.9);backdro
 .prose strong{color:var(--cream);font-weight:500}
 .lead{font-size:1.18rem !important;color:var(--cream) !important}
 
+/* TICO certificate card — mirrors the block in index.html's inline styles.
+   Ivory on gold so it reads as a certificate against the navy pages. */
+.tico-cert{max-width:420px;margin:30px auto;padding:5px;border-radius:5px;background:linear-gradient(150deg,var(--gold-light),var(--gold-deep) 46%,var(--gold-light));box-shadow:0 30px 64px -28px rgba(3,10,24,.8)}
+.tico-cert-in{position:relative;overflow:hidden;background:linear-gradient(165deg,#FFFDF7,#F2ECDD);border:1px solid rgba(166,127,50,.4);border-radius:2px;padding:32px 30px 26px;text-align:center}
+.tico-cert-in::before{content:"";position:absolute;inset:0;background:repeating-radial-gradient(circle at 50% 32%,rgba(166,127,50,.085) 0 1px,transparent 1px 10px);pointer-events:none}
+.tico-cert .seal{position:relative;width:98px;height:98px;margin:0 auto 16px;display:block}
+.tico-cert .sealtxt{font-family:'Jost',sans-serif;font-size:8.4px;font-weight:500;letter-spacing:2.1px;fill:#A67F32}
+.tico-cert .act{position:relative;display:block;font-size:.58rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold-deep)}
+.tico-cert h3{position:relative;font-size:1.7rem;color:var(--navy);margin:9px 0 4px}
+.tico-cert .who{position:relative;font-size:.65rem;letter-spacing:.24em;text-transform:uppercase;color:#6b7587}
+.tico-cert dl{position:relative;display:flex;justify-content:center;gap:38px;margin:18px 0 16px;padding:15px 0;border-top:1px solid rgba(166,127,50,.32);border-bottom:1px solid rgba(166,127,50,.32)}
+.tico-cert dt{font-size:.56rem;letter-spacing:.2em;text-transform:uppercase;color:#7b8496;margin-bottom:5px}
+.tico-cert dd{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--navy);letter-spacing:.05em;font-variant-numeric:lining-nums tabular-nums;font-feature-settings:'lnum' 1,'tnum' 1}
+.tico-cert .note{position:relative;font-size:.72rem!important;line-height:1.65;font-weight:300;color:#5b6577!important;margin:0!important}
+@media(max-width:520px){.tico-cert dl{gap:26px}.tico-cert-in{padding:28px 20px 22px}}
+
 /* feature grid */
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px;margin:26px 0}
 .card{background:rgba(247,243,234,.03);border:1px solid rgba(200,162,76,.2);border-radius:8px;padding:26px}

@@ -234,6 +234,27 @@
   .promises{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
   .promises span{font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--navy);border:1px solid var(--gold);border-radius:40px;padding:9px 18px;background:rgba(200,162,76,.1)}
 
+  /* ---------- TICO CERTIFICATE ----------
+     Her certificate rebuilt as a card rather than a photo of paper: the number
+     stays selectable/searchable and there's no extra image to download. Ivory
+     on gold so it reads as a certificate on the cream About band here and on
+     the navy content pages (same rules live in /site.css). */
+  .about-side{display:flex;flex-direction:column;gap:26px}
+  .about-side .tico-cert{max-width:none}
+  .tico-cert{max-width:420px;padding:5px;border-radius:5px;background:linear-gradient(150deg,var(--gold-light),var(--gold-deep) 46%,var(--gold-light));box-shadow:0 30px 64px -28px rgba(6,21,46,.6)}
+  .tico-cert-in{position:relative;overflow:hidden;background:linear-gradient(165deg,#FFFDF7,#F2ECDD);border:1px solid rgba(166,127,50,.4);border-radius:2px;padding:32px 30px 26px;text-align:center}
+  .tico-cert-in::before{content:"";position:absolute;inset:0;background:repeating-radial-gradient(circle at 50% 32%,rgba(166,127,50,.085) 0 1px,transparent 1px 10px);pointer-events:none}
+  .tico-cert .seal{position:relative;width:98px;height:98px;margin:0 auto 16px;display:block}
+  .tico-cert .sealtxt{font-family:'Jost',sans-serif;font-size:8.4px;font-weight:500;letter-spacing:2.1px;fill:#A67F32}
+  .tico-cert .act{position:relative;display:block;font-size:.58rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold-deep)}
+  .tico-cert h3{position:relative;font-size:1.7rem;color:var(--navy);margin:9px 0 4px}
+  .tico-cert .who{position:relative;font-size:.65rem;letter-spacing:.24em;text-transform:uppercase;color:#6b7587}
+  .tico-cert dl{position:relative;display:flex;justify-content:center;gap:38px;margin:18px 0 16px;padding:15px 0;border-top:1px solid rgba(166,127,50,.32);border-bottom:1px solid rgba(166,127,50,.32)}
+  .tico-cert dt{font-size:.56rem;letter-spacing:.2em;text-transform:uppercase;color:#7b8496;margin-bottom:5px}
+  .tico-cert dd{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--navy);letter-spacing:.05em;font-variant-numeric:lining-nums tabular-nums;font-feature-settings:'lnum' 1,'tnum' 1}
+  .tico-cert .note{position:relative;font-size:.72rem;line-height:1.65;font-weight:300;color:#5b6577;margin:0}
+  @media(max-width:520px){.tico-cert dl{gap:26px}.tico-cert-in{padding:28px 20px 22px}}
+
   /* ---------- AI ASSISTANT ---------- */
   .ai{background:linear-gradient(160deg,var(--navy) 0%,var(--navy-deep) 100%);position:relative;overflow:hidden}
   .ai::before{content:"";position:absolute;top:-40%;left:-10%;width:60%;height:180%;background:radial-gradient(closest-side,rgba(200,162,76,.14),transparent);pointer-events:none}
@@ -386,7 +407,13 @@
   ],
   "founder": { "@type": "Person", "name": "Madz", "jobTitle": "Lead Travel Advisor" },
   "memberOf": { "@type": "Organization", "name": "TravelOnly" },
-  "hasCredential": "TICO Certified",
+  "hasCredential": {
+    "@type": "EducationalOccupationalCredential",
+    "name": "TICO Certified",
+    "credentialCategory": "certification",
+    "identifier": "T123460987",
+    "recognizedBy": { "@type": "Organization", "name": "Travel Industry Council of Ontario" }
+  },
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
     "name": "Travel Services",
@@ -419,7 +446,7 @@
       "name": "Is Madz Travel TICO certified?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. Madz Travel is a TICO-certified travel practice affiliated with TravelOnly, so every booking is backed by Ontario's Travel Industry Council consumer protection and full financial coverage."
+        "text": "Yes. Madz Travel is a TICO-certified travel practice (Certificate No. T123460987) affiliated with TravelOnly, so every booking is backed by Ontario's Travel Industry Council consumer protection and full financial coverage."
       }
     },
     {
@@ -594,6 +621,7 @@
 <!-- ================= ABOUT / ADVISOR ================= -->
 <section class="about pad" id="about">
   <div class="wrap about-grid">
+   <div class="about-side">
     <div class="advisor-card reveal">
       <svg class="compass-sm" viewBox="0 0 200 200" fill="none" stroke="#C8A24C" stroke-width="1"><circle cx="100" cy="100" r="96"/><circle cx="100" cy="100" r="72"/><path d="M100 8 L112 100 L100 192 L88 100 Z" fill="#C8A24C" fill-opacity=".3"/></svg>
       <svg class="logo" viewBox="0 0 48 48" aria-label="Madz Travel"><circle cx="24" cy="24" r="21" fill="none" stroke="#C8A24C" stroke-width="1.5"/><path d="M35 13 L12 24.5 L22.5 27.5 Z" fill="#C8A24C"/><path d="M22.5 27.5 L25.5 35 L35 13 Z" fill="#A67F32"/></svg>
@@ -602,6 +630,35 @@
       <p style="color:var(--cream-dim);font-weight:300">"Travel is the one thing you buy that makes you richer. My job is to handle every detail so all you have to do is enjoy the journey."</p>
       <div class="aff">Affiliated with <b>TRAVELONLY®</b></div>
     </div>
+
+    <!-- The certificate itself. Number and date come straight off her TICO
+         certificate — update both here and in the FAQ/JSON-LD if it's ever
+         reissued. -->
+    <figure class="tico-cert reveal">
+      <div class="tico-cert-in">
+        <svg class="seal" viewBox="0 0 120 120" role="img" aria-label="Madz Travel TICO certified seal">
+          <defs>
+            <path id="tcTop" d="M14,60a46,46 0 0 1 92,0" fill="none"/>
+            <path id="tcBot" d="M14,60a46,46 0 0 0 92,0" fill="none"/>
+          </defs>
+          <circle cx="60" cy="60" r="56" fill="none" stroke="#A67F32" stroke-width="1.3"/>
+          <circle cx="60" cy="60" r="51.5" fill="none" stroke="#C8A24C" stroke-width="2.4" stroke-dasharray=".5 4" stroke-linecap="round"/>
+          <circle cx="60" cy="60" r="32" fill="none" stroke="#A67F32" stroke-width=".9"/>
+          <text class="sealtxt"><textPath href="#tcTop" startOffset="50%" text-anchor="middle">TICO CERTIFIED</textPath></text>
+          <text class="sealtxt"><textPath href="#tcBot" startOffset="50%" text-anchor="middle">MADZ TRAVEL</textPath></text>
+          <path transform="translate(36,36) scale(2)" fill="#C8A24C" d="M12 2l2.4 7.4H22l-6 4.6 2.3 7.4-6.3-4.6L5.7 21 8 14 2 9.4h7.6z"/>
+        </svg>
+        <span class="act">Travel Industry Act, 2002</span>
+        <h3>TICO Certified</h3>
+        <div class="who">Travel Industry Council of Ontario</div>
+        <dl>
+          <div><dt>Certificate No.</dt><dd>T123460987</dd></div>
+          <div><dt>Certified</dt><dd>August 4, 2026</dd></div>
+        </dl>
+        <p class="note">Bookings are made and financially protected under TravelOnly&rsquo;s TICO registration, backed by Ontario&rsquo;s Travel Industry Compensation Fund.</p>
+      </div>
+    </figure>
+   </div>
     <div class="reveal">
       <span class="eyebrow">Your Advisor</span>
       <h2>Personal Service, <em>Every Mile</em> of the Way</h2>
@@ -677,7 +734,7 @@
       </details>
       <details class="faq-item">
         <summary><h3>Is Madz Travel TICO certified?</h3><span class="pm"></span></summary>
-        <div class="ans">Yes. Madz Travel is a TICO-certified travel practice affiliated with TravelOnly, so every booking is backed by Ontario's Travel Industry Council consumer protection and full financial coverage.</div>
+        <div class="ans">Yes. Madz Travel is a TICO-certified travel practice — Certificate No. T123460987 — affiliated with TravelOnly, so every booking is backed by Ontario's Travel Industry Council consumer protection and full financial coverage.</div>
       </details>
       <details class="faq-item">
         <summary><h3>What types of trips can you book?</h3><span class="pm"></span></summary>
@@ -753,7 +810,7 @@
 <footer>
   <div class="wrap foot">
     <a href="#top" class="brand"><svg class="logo" viewBox="0 0 48 48" aria-label="Madz Travel"><circle cx="24" cy="24" r="21" fill="none" stroke="#C8A24C" stroke-width="1.5"/><path d="M35 13 L12 24.5 L22.5 27.5 Z" fill="#C8A24C"/><path d="M22.5 27.5 L25.5 35 L35 13 Z" fill="#A67F32"/></svg><span class="txt"><b>Madz Travel</b><span>We'll Take You There</span></span></a>
-    <div class="tico"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#C8A24C" stroke-width="1.6"><path d="M12 2l7 3v6c0 5-3.5 8-7 9-3.5-1-7-4-7-9V5z"/><path d="M9 12l2 2 4-4"/></svg>TICO Certified · Affiliated with TravelOnly®</div>
+    <div class="tico"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#C8A24C" stroke-width="1.6"><path d="M12 2l7 3v6c0 5-3.5 8-7 9-3.5-1-7-4-7-9V5z"/><path d="M9 12l2 2 4-4"/></svg>TICO Certified · Cert. No. T123460987 · Affiliated with TravelOnly®</div>
     <p>© <span id="yr"></span> Madz Travel. All rights reserved.</p>
   </div>
   <div class="foot-legal">
