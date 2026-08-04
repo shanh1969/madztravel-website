@@ -258,7 +258,7 @@
   .tico-cert .who{position:relative;font-size:.65rem;letter-spacing:.24em;text-transform:uppercase;color:#6b7587}
   .tico-cert dl{position:relative;display:flex;justify-content:center;gap:38px;margin:18px 0 16px;padding:15px 0;border-top:1px solid rgba(166,127,50,.32);border-bottom:1px solid rgba(166,127,50,.32)}
   .tico-cert dt{font-size:.56rem;letter-spacing:.2em;text-transform:uppercase;color:#7b8496;margin-bottom:5px}
-  .tico-cert dd{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--navy);letter-spacing:.05em;font-variant-numeric:lining-nums tabular-nums;font-feature-settings:'lnum' 1,'tnum' 1}
+  .tico-cert dd{font-family:'Cormorant Garamond',serif;font-size:1.55rem;color:var(--navy);letter-spacing:.14em;font-variant-numeric:lining-nums tabular-nums;font-feature-settings:'lnum' 1,'tnum' 1}
   .tico-cert .note{position:relative;font-size:.72rem;line-height:1.65;font-weight:300;color:#5b6577;margin:0}
   @media(max-width:520px){.tico-cert dl{gap:26px}.tico-cert-in{padding:28px 20px 22px}}
 
@@ -329,7 +329,12 @@
   .foot{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:20px}
   .foot .brand .logo{width:34px;height:34px}
   .foot p{font-size:.8rem;color:var(--cream-dim);opacity:.7}
-  .foot .tico{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:8px}
+  /* The credential gets its own centred row: with the regulator's mark added, brand +
+     credential + copyright on one line crowded the copyright onto a ragged second row. */
+  .foot .tico{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:14px;flex-wrap:wrap;justify-content:center;flex-basis:100%;order:3;margin-top:2px}
+  .tico-mark{display:inline-flex;background:#fff;border-radius:4px;padding:7px 10px;line-height:0;box-shadow:0 6px 18px -8px rgba(0,0,0,.55);transition:transform .3s var(--ease)}
+  .tico-mark:hover{transform:translateY(-2px)}
+  .tico-mark img{height:30px;width:auto;display:block}
   .foot-legal{max-width:var(--maxw);margin:22px auto 0;padding:18px 28px 0;border-top:1px solid rgba(200,162,76,.12);display:flex;flex-wrap:wrap;justify-content:center;gap:8px 22px;align-items:center}
   .foot-legal a{font-size:.76rem;letter-spacing:.08em;color:var(--cream-dim);opacity:.85;transition:color .3s}
   .foot-legal a:hover{color:var(--gold-light)}
@@ -660,7 +665,6 @@
         <div class="who">Travel Industry Council of Ontario</div>
         <dl>
           <div><dt>Certificate No.</dt><dd>T123460987</dd></div>
-          <div><dt>Certified</dt><dd>August 4, 2026</dd></div>
         </dl>
         <p class="note">Bookings are made and financially protected under TravelOnly&rsquo;s TICO registration, backed by Ontario&rsquo;s Travel Industry Compensation Fund.</p>
       </div>
@@ -817,7 +821,10 @@
 <footer>
   <div class="wrap foot">
     <a href="#top" class="brand"><svg class="logo" viewBox="0 0 48 48" aria-label="Madz Travel"><circle cx="24" cy="24" r="21" fill="none" stroke="#C8A24C" stroke-width="1.5"/><path d="M35 13 L12 24.5 L22.5 27.5 Z" fill="#C8A24C"/><path d="M22.5 27.5 L25.5 35 L35 13 Z" fill="#A67F32"/></svg><span class="txt"><b>Madz Travel</b><span>We'll Take You There</span></span></a>
-    <div class="tico"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#C8A24C" stroke-width="1.6"><path d="M12 2l7 3v6c0 5-3.5 8-7 9-3.5-1-7-4-7-9V5z"/><path d="M9 12l2 2 4-4"/></svg>TICO Certified · Cert. No. T123460987 · Affiliated with TravelOnly®</div>
+    <!-- The regulator's own mark, self-hosted rather than hot-linked from tico.ca so her
+         footer never depends on their server being up. It sits on a white plate because
+         the logo is dark artwork and would vanish against the navy. -->
+    <div class="tico"><a class="tico-mark" href="https://www.tico.ca/" target="_blank" rel="noopener noreferrer"><img src="/tico-logo.png" width="362" height="112" alt="TICO — Ontario's travel regulator" loading="lazy"></a>TICO Certified · Cert. No. T123460987 · Affiliated with TravelOnly®</div>
     <p>© <span id="yr"></span> Madz Travel. All rights reserved.</p>
   </div>
   <div class="foot-legal">
