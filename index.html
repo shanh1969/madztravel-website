@@ -91,6 +91,13 @@
   }
   .eyebrow::before,.eyebrow.center::after{content:"";width:34px;height:1px;background:linear-gradient(90deg,transparent,var(--gold))}
   .eyebrow.center::before{background:linear-gradient(90deg,var(--gold),transparent)}
+  /* The hero eyebrow now carries the certificate number, which is long. At .42em tracking
+     it wrapped to three ragged lines on a phone, so tighten the tracking and centre the
+     wrap there — the line still reads as one credential rather than three fragments. */
+  @media(max-width:620px){
+    .hero .eyebrow.center{letter-spacing:.2em;text-align:center;line-height:1.9}
+    .hero .eyebrow.center::before,.hero .eyebrow.center::after{width:18px}
+  }
 
   .btn{
     display:inline-flex;align-items:center;gap:10px;
@@ -530,7 +537,7 @@
   <div class="wrap hero-inner">
     <!-- Eyebrow sits ABOVE the grid: inside the narrower centre column it wrapped
          onto two lines and looked scruffy. -->
-    <span class="eyebrow center">TICO Certified · Affiliated with TravelOnly®</span>
+    <span class="eyebrow center">TICO Certified · Cert. No. T123460987 · Affiliated with TravelOnly®</span>
 
     <div class="hero-grid">
 
