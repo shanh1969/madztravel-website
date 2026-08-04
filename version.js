@@ -1,11 +1,12 @@
 /* ============================================================
-   SINGLE SOURCE OF TRUTH FOR THE SITE VERSION.
-   To bump the version shown at the bottom of every page,
-   change the ONE line below and redeploy. Nothing else.
+   GENERATED AT DEPLOY TIME BY stamp-version.js — DO NOT EDIT.
+   Edit version.txt to change the release number; the date and commit
+   come from the deploy. The committed copy of this file is only a
+   fallback for the case where the build step does not run.
    ============================================================ */
 (function () {
-  var VERSION = "1.0.0";
+  var LABEL = "Version 1.1.0 · 2026-08-04 · 4de144f";
   document.querySelectorAll(".version-bar").forEach(function (el) {
-    el.textContent = "Version " + VERSION;
+    el.textContent = LABEL;
   });
 })();
