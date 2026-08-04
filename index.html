@@ -901,7 +901,15 @@
      Floating bottom-right button → opens a 2-way text & voice chat.
      Conversations + captured leads appear in the Madz Travel portal
      under AI Secretary → Chat and Leads. -->
-<script src="https://smarterflow.ca/widget.js" data-tenant-id="85902f42-6ce0-4883-bf4a-e2eda92f8618" defer></script>
+<!-- Madz's assistant. THE VOICE-FIRST WIDGET: tap the corner bubble, fill the short
+     name/phone/email form, tap Send, and she starts talking — like a phone call.
+     This replaces the old text-chat widget (smarterflow.ca/widget.js, which framed
+     /embed/chat/) that opened straight into a typing box. One line each way if it
+     ever needs swapping back.
+     The loader is served by the voice server itself, so the widget and the voice
+     session can never be different versions of each other. It exposes the same
+     window.SmarterFlowChat.open() the "Ask the Assistant" button above calls. -->
+<script src="https://smarter-flow-systems-production.up.railway.app/talk-widget.js?tenant_id=85902f42-6ce0-4883-bf4a-e2eda92f8618" defer></script>
 <script src="/version.js"></script>
 </body>
 </html>
