@@ -8,5 +8,14 @@
         { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
       ]
     }
+  ],
+  "rewrites": [
+    { "source": "/travel-portal", "destination": "https://smarterflow.ca/app/madztravel/travel" },
+    { "source": "/app/:path*", "destination": "https://smarterflow.ca/app/:path*" },
+    { "source": "/portal/:path*", "destination": "https://smarterflow.ca/portal/:path*" },
+    { "source": "/auth", "destination": "https://smarterflow.ca/auth" },
+    { "source": "/assets/:path*", "destination": "https://smarterflow.ca/assets/:path*" },
+    { "source": "/lovable-uploads/:path*", "destination": "https://smarterflow.ca/lovable-uploads/:path*" },
+    { "source": "/manifest.json", "destination": "https://smarterflow.ca/manifest.json" }
   ]
 }
