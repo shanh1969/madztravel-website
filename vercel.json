@@ -14,6 +14,7 @@
   ],
   "rewrites": [
     { "source": "/app/:path*", "destination": "https://smarterflow.ca/app/:path*" },
+    { "source": "/travel/:path*", "destination": "https://smarterflow.ca/travel/:path*" },
     { "source": "/portal/:path*", "destination": "https://smarterflow.ca/portal/:path*" },
     { "source": "/auth", "destination": "https://smarterflow.ca/auth" },
     { "source": "/assets/:path*", "destination": "https://smarterflow.ca/assets/:path*" },

@@ -854,12 +854,14 @@
 <div class="version-bar"></div>
 
 <script>
-  /* ====== EDIT THIS ONE LINE: the portal sign-in URL ======
-     Points at Madz's LIVE agent portal on production (she signs in here to
-     manage bookings/leads/etc.). Verified working at smarterflow.ca.
-     LATER (when the customer-facing portal is set up in production), switch
-     this to the customer login: https://smarterflow.ca/travel/<slug>/account */
-  const MY_TRIPS_URL = "https://smarterflow.ca/travel/madztravel/account";
+  /* ====== EDIT THIS ONE LINE: the customer sign-in URL ======
+     Where a CUSTOMER signs in to see their trips. Madz's own agent portal is a
+     different address — madztravel.ca/travel-portal — and is not linked from
+     this public page.
+     RELATIVE on purpose: vercel.json forwards /travel/* through to SmarterFlow,
+     so the customer stays on madztravel.ca instead of being handed off to
+     smarterflow.ca. Making this absolute again would undo that. */
+  const MY_TRIPS_URL = "/travel/madztravel/account";
   /* ================================================================ */
 
   document.querySelectorAll('[data-mytrips]').forEach(function(a){
