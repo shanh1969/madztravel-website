@@ -216,7 +216,7 @@
      downloaded on page load. */
   .filmsec{background:linear-gradient(180deg,var(--navy-deep),var(--navy-soft) 55%,var(--navy-deep));padding:104px 0 96px}
   .film{max-width:940px;margin:0 auto;border:1px solid rgba(200,162,76,.34);border-radius:14px;overflow:hidden;box-shadow:0 34px 90px rgba(0,0,0,.55);background:var(--navy-deep);line-height:0}
-  .film video{display:block;width:100%;height:auto;aspect-ratio:16/9;background:var(--navy-deep)}
+  .film video{display:block;width:100%;height:auto;aspect-ratio:16/9;background:var(--navy-deep);cursor:pointer}
   .film-note{text-align:center;color:var(--cream-dim);font-weight:300;font-size:.95rem;margin-top:20px;line-height:1.7}
   @media(max-width:640px){ .filmsec{padding:76px 0 68px} }
 
@@ -616,6 +616,20 @@
     <p class="film-note reveal">In partnership with SmarterFlow Systems</p>
   </div>
 </section>
+<script>
+/* Tap the picture, not just the little play button, to start and stop it.
+   The bottom strip is left alone — that is where the browser draws its own
+   controls, and toggling there would fight the play button underneath. */
+(function () {
+  var v = document.querySelector('.film video');
+  if (!v) return;
+  var CONTROL_BAR = 46;
+  v.addEventListener('click', function (e) {
+    if (e.clientY > v.getBoundingClientRect().bottom - CONTROL_BAR) return;
+    if (v.paused) { v.play(); } else { v.pause(); }
+  });
+})();
+</script>
 
 <!-- ================= SERVICES ================= -->
 <section class="services pad" id="services">
