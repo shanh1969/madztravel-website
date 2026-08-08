@@ -618,14 +618,22 @@
 </section>
 <script>
 /* Tap the picture, not just the little play button, to start and stop it.
-   The bottom strip is left alone — that is where the browser draws its own
-   controls, and toggling there would fight the play button underneath. */
+   No guard around the control bar: Chrome keeps clicks on its own controls
+   inside their shadow DOM, so anything that reaches this listener is a click
+   on the picture. Reserving a strip at the bottom only created a dead band
+   that swallowed the click meant to stop playback.
+   Toggling happens on the spot, but a second click within 300ms is ignored:
+   that is the back half of a double click, and toggling twice would land the
+   video back exactly where it started — which is what "it won't stop" looked
+   like. The browser still gets the double click for fullscreen. */
 (function () {
   var v = document.querySelector('.film video');
   if (!v) return;
-  var CONTROL_BAR = 46;
-  v.addEventListener('click', function (e) {
-    if (e.clientY > v.getBoundingClientRect().bottom - CONTROL_BAR) return;
+  var last = 0;
+  v.addEventListener('click', function () {
+    var now = Date.now();
+    if (now - last < 300) return;
+    last = now;
     if (v.paused) { v.play(); } else { v.pause(); }
   });
 })();
