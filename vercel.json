@@ -10,7 +10,8 @@
     }
   ],
   "redirects": [
-    { "source": "/travel-portal", "destination": "/app/madztravel/travel", "permanent": false }
+    { "source": "/travel-portal", "destination": "/app/madztravel/travel", "permanent": false },
+    { "source": "/card", "destination": "/#contact", "permanent": false }
   ],
   "rewrites": [
     { "source": "/app/:path*", "destination": "https://smarterflow.ca/app/:path*" },
