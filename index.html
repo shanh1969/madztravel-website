@@ -210,6 +210,16 @@
 
   .pad{padding:120px 0}
 
+  /* ---------- WALKTHROUGH FILM ---------- */
+  /* Sits directly above Services. The video is ~11MB, so preload is "none" and the
+     poster carries the section until someone actually presses play — nothing is
+     downloaded on page load. */
+  .filmsec{background:linear-gradient(180deg,var(--navy-deep),var(--navy-soft) 55%,var(--navy-deep));padding:104px 0 96px}
+  .film{max-width:940px;margin:0 auto;border:1px solid rgba(200,162,76,.34);border-radius:14px;overflow:hidden;box-shadow:0 34px 90px rgba(0,0,0,.55);background:var(--navy-deep);line-height:0}
+  .film video{display:block;width:100%;height:auto;aspect-ratio:16/9;background:var(--navy-deep)}
+  .film-note{text-align:center;color:var(--cream-dim);font-weight:300;font-size:.95rem;margin-top:20px;line-height:1.7}
+  @media(max-width:640px){ .filmsec{padding:76px 0 68px} }
+
   /* ---------- SERVICES ---------- */
   .services{background:linear-gradient(180deg,var(--navy-deep),var(--navy))}
   .svc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1px;background:rgba(200,162,76,.16);border:1px solid rgba(200,162,76,.16)}
@@ -586,6 +596,26 @@
     <div><svg viewBox="0 0 24 24"><path d="M12 2l2.4 7.4H22l-6 4.6 2.3 7.4-6.3-4.6L5.7 21 8 14 2 9.4h7.6z"/></svg>Personalized Service</div>
   </div>
 </div>
+
+<!-- ================= SERVICES ================= -->
+<!-- ================= WALKTHROUGH FILM ================= -->
+<section class="filmsec" id="watch">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow center">Watch</span>
+      <h2>Madz Travel, <em>Now With AI</em></h2>
+      <p>Two minutes on how it all works — the assistant, your own account, and everything waiting inside it.</p>
+    </div>
+    <div class="film reveal">
+      <video controls preload="none" playsinline poster="madz-ai-poster.jpg"
+             aria-label="Madz Travel — a two-minute walkthrough of the AI assistant and client portal">
+        <source src="madz-travel-ai.mp4" type="video/mp4">
+        Your browser can&rsquo;t play this video. <a href="madz-travel-ai.mp4">Download it instead</a>.
+      </video>
+    </div>
+    <p class="film-note reveal">In partnership with SmarterFlow Systems</p>
+  </div>
+</section>
 
 <!-- ================= SERVICES ================= -->
 <section class="services pad" id="services">
