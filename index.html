@@ -607,7 +607,7 @@
       <p>Two minutes on how it all works — the assistant, your own account, and everything waiting inside it.</p>
     </div>
     <div class="film reveal">
-      <video controls preload="none" playsinline poster="madz-ai-poster.jpg"
+      <video controls preload="metadata" playsinline poster="madz-ai-poster.jpg"
              aria-label="Madz Travel — a two-minute walkthrough of the AI assistant and client portal">
         <source src="madz-travel-ai.mp4" type="video/mp4">
         Your browser can&rsquo;t play this video. <a href="madz-travel-ai.mp4">Download it instead</a>.
@@ -616,28 +616,15 @@
     <p class="film-note reveal">In partnership with SmarterFlow Systems</p>
   </div>
 </section>
-<script>
-/* Tap the picture, not just the little play button, to start and stop it.
-   No guard around the control bar: Chrome keeps clicks on its own controls
-   inside their shadow DOM, so anything that reaches this listener is a click
-   on the picture. Reserving a strip at the bottom only created a dead band
-   that swallowed the click meant to stop playback.
-   Toggling happens on the spot, but a second click within 300ms is ignored:
-   that is the back half of a double click, and toggling twice would land the
-   video back exactly where it started — which is what "it won't stop" looked
-   like. The browser still gets the double click for fullscreen. */
-(function () {
-  var v = document.querySelector('.film video');
-  if (!v) return;
-  var last = 0;
-  v.addEventListener('click', function () {
-    var now = Date.now();
-    if (now - last < 300) return;
-    last = now;
-    if (v.paused) { v.play(); } else { v.pause(); }
-  });
-})();
-</script>
+<!-- No click handler here on purpose. The browser ALREADY toggles play/pause when
+     you click a <video controls>, so a handler of our own toggled it a second
+     time and the video ended up exactly where it started — measured on the live
+     page as a play and a pause landing in the same millisecond. That is why
+     clicking appeared to do nothing.
+     The only reason clicking did nothing originally was preload="none": with no
+     media loaded there is nothing for the browser to toggle. preload="metadata"
+     fetches just the header (tens of KB, not the 11MB file), which is enough for
+     the first click to start it. -->
 
 <!-- ================= SERVICES ================= -->
 <section class="services pad" id="services">
