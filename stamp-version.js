@@ -6,13 +6,13 @@
    date of THIS deploy, so the bar at the bottom of every page always
    describes what is actually live.
 
-   Why it exists: version.js used to hard-code "1.0.0", so the stamp
-   only moved if somebody remembered to edit it by hand — and nobody
-   did, through a dozen deploys. A number that can go stale is worse
-   than no number, because it is quietly believed.
+   Only the release number is SHOWN — one small line, nothing else.
+   The deploy date, commit and environment still get stamped onto the
+   element as data- attributes, so a deploy can still be identified
+   from view-source without putting any of it in front of visitors.
 
-   To change the RELEASE number, edit version.txt. The commit and date
-   are never edited by hand; they come from the deploy itself.
+   To change the RELEASE number, edit version.txt. It is the only part
+   that is edited by hand; the rest comes from the deploy itself.
 
    Run it locally the same way Vercel does:   node stamp-version.js
    ============================================================ */
@@ -34,26 +34,24 @@ const release = (fs.existsSync('version.txt') ? fs.readFileSync('version.txt', '
 const sha = (process.env.VERCEL_GIT_COMMIT_SHA || git('rev-parse HEAD')).slice(0, 7);
 const date = new Date().toISOString().slice(0, 10);
 
-// A preview build should SAY it is a preview. Seeing "Version 1.1.0" on a preview URL and assuming
-// production has it is exactly the confusion this stamp is meant to end.
 const env = process.env.VERCEL_ENV || '';
-const suffix = env && env !== 'production' ? ' · ' + env : '';
-
-const label = 'Version ' + release + ' · ' + date + (sha ? ' · ' + sha : '') + suffix;
 
 const out = `/* ============================================================
    GENERATED AT DEPLOY TIME BY stamp-version.js — DO NOT EDIT.
-   Edit version.txt to change the release number; the date and commit
-   come from the deploy. The committed copy of this file is only a
-   fallback for the case where the build step does not run.
+   Edit version.txt to change the release number. The date, commit and
+   environment are stamped as data- attributes, never displayed. The
+   committed copy of this file is only a fallback for the case where
+   the build step does not run.
    ============================================================ */
 (function () {
-  var LABEL = ${JSON.stringify(label)};
+  var LABEL = ${JSON.stringify(release)};
+  var BUILD = ${JSON.stringify(date + (sha ? ' ' + sha : '') + (env ? ' ' + env : ''))};
   document.querySelectorAll(".version-bar").forEach(function (el) {
     el.textContent = LABEL;
+    el.setAttribute("data-build", BUILD);
   });
 })();
 `;
 
 fs.writeFileSync('version.js', out);
-console.log('[stamp-version] ' + label);
+console.log('[stamp-version] ' + release + ' (build ' + date + ' ' + sha + ' ' + (env || 'local') + ')');
