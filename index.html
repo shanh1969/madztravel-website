@@ -214,11 +214,16 @@
   /* Sits directly above Services. The video is ~11MB, so preload is "none" and the
      poster carries the section until someone actually presses play — nothing is
      downloaded on page load. */
-  .filmsec{background:linear-gradient(180deg,var(--navy-deep),var(--navy-soft) 55%,var(--navy-deep));padding:104px 0 96px}
+  .filmsec{background:linear-gradient(180deg,var(--navy-deep),var(--navy-soft) 55%,var(--navy-deep));padding:60px 0 40px}
   .film{max-width:940px;margin:0 auto;border:1px solid rgba(200,162,76,.34);border-radius:14px;overflow:hidden;box-shadow:0 34px 90px rgba(0,0,0,.55);background:var(--navy-deep);line-height:0}
   .film video{display:block;width:100%;height:auto;aspect-ratio:16/9;background:var(--navy-deep);cursor:pointer}
   .film-note{text-align:center;color:var(--cream-dim);font-weight:300;font-size:.95rem;margin-top:20px;line-height:1.7}
-  @media(max-width:640px){ .filmsec{padding:76px 0 68px} }
+  /* Services sits directly under the film. Its own 120px of .pad top padding
+     stacked on the film's bottom padding left a canyon between the two, so the
+     seam between these particular sections is tightened — .pad itself is shared
+     by every other section and is left alone. */
+  .filmsec + .services{padding-top:56px}
+  @media(max-width:640px){ .filmsec{padding:44px 0 26px} .filmsec + .services{padding-top:44px} }
 
   /* ---------- SERVICES ---------- */
   .services{background:linear-gradient(180deg,var(--navy-deep),var(--navy))}
