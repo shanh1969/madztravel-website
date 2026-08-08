@@ -1,0 +1,28 @@
+#!/bin/sh
+# ============================================================
+# Advances the footer version number on every commit.
+#
+# The number in the footer of madztravel.ca is how you tell whether a
+# deploy actually landed: if it did not move, the deploy did not land.
+# That only works if nobody has to remember to move it, so this hook
+# moves it — version.txt goes 1.000 -> 1.001 -> 1.002 and version.js is
+# regenerated to match, both added to the commit being made.
+#
+# It lives in hooks/ rather than .git/hooks so it is committed and
+# visible. Git only runs it if the repo is pointed at this directory:
+#
+#     git config core.hooksPath hooks
+#
+# That setting is per-clone. A fresh clone of this repo needs it run
+# once, or the number quietly stops advancing.
+# ============================================================
+
+# Rebases and merges replay existing commits; bumping there would inflate the number for work that
+# was already counted once.
+git_dir=$(git rev-parse --git-dir)
+if [ -d "$git_dir/rebase-merge" ] || [ -d "$git_dir/rebase-apply" ] || [ -f "$git_dir/MERGE_HEAD" ]; then
+  exit 0
+fi
+
+node stamp-version.js --bump || exit 1
+git add version.txt version.js

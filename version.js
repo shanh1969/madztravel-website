@@ -1,14 +1,12 @@
 /* ============================================================
    GENERATED AT DEPLOY TIME BY stamp-version.js — DO NOT EDIT.
-   The number counts commits; it is not typed by hand. Edit version.txt
-   only to start a new major. The date, commit and environment are
-   stamped as attributes, never shown on the line. The committed copy
-   of this file is only a fallback for the case where the build step
-   does not run.
+   The number comes from version.txt, which a commit hook advances on
+   every commit; it is not typed by hand. The date, commit and
+   environment are stamped as attributes, never shown on the line.
    ============================================================ */
 (function () {
-  var LABEL = "1.000";
-  var BUILD = "2026-08-08 9d2106e";
+  var LABEL = "1.001";
+  var BUILD = "2026-08-08 ef92638";
   var DATE  = "2026-08-08";
   document.querySelectorAll(".version-bar").forEach(function (el) {
     el.textContent = LABEL;
