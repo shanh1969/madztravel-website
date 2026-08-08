@@ -11,7 +11,9 @@
   ],
   "redirects": [
     { "source": "/travel-portal", "destination": "/app/madztravel/travel", "permanent": false },
-    { "source": "/card", "destination": "/", "permanent": false }
+    { "source": "/card", "destination": "/", "permanent": false },
+    { "source": "/fb", "destination": "https://www.facebook.com/profile.php?id=61592821211030", "permanent": false },
+    { "source": "/ig", "destination": "https://www.instagram.com/madztravel.ca/", "permanent": false }
   ],
   "rewrites": [
     { "source": "/app/:path*", "destination": "https://smarterflow.ca/app/:path*" },
