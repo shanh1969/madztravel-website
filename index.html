@@ -352,7 +352,10 @@
   .foot p{font-size:.8rem;color:var(--cream-dim);opacity:.7}
   /* The credential gets its own centred row: with the regulator's mark added, brand +
      credential + copyright on one line crowded the copyright onto a ragged second row. */
-  .foot .tico{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:14px;flex-wrap:wrap;justify-content:center;flex-basis:100%;order:3;margin-top:2px}
+  /* column-REVERSE, not column: the mark is first in the source (it reads as the subject
+     of the credential to a screen reader) but sits UNDER the line visually, centred to
+     the page. Reversing here keeps the DOM order and moves only the picture. */
+  .foot .tico{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);display:flex;flex-direction:column-reverse;align-items:center;gap:12px;justify-content:center;text-align:center;flex-basis:100%;order:3;margin-top:2px}
   /* The registrant disclosure. TICO requires an outside sales rep's own branded site to carry
      the HOST agency's business name, address and registration number; Madz's certificate number
      sits above it and is a personal credential, not a substitute. Sentence case and full width
@@ -360,15 +363,17 @@
      like the credential line it follows. */
   .tico-reg{flex-basis:100%;order:4;text-align:center;font-size:.7rem;line-height:1.65;
     letter-spacing:.02em;text-transform:none;color:var(--cream-dim);opacity:.72;margin-top:6px}
-  /* Builder credit. Deliberately the quietest line in the footer and ordered LAST, below the
-     regulator disclosure — nothing here may compete with the TICO block a visitor is meant to
-     read. The link opens in a new tab so a curious reader is never pulled off Madz's site, and
+  /* Builder credit. Still ordered LAST, below the regulator disclosure — the TICO block is
+     what a visitor is meant to read first — but no longer whispered: at .68rem/.5 opacity it
+     was the smallest, faintest text on the site and effectively unreadable. Sized to match the
+     regulator line instead, so it's legible without out-ranking the credential above it.
+     The link opens in a new tab so a curious reader is never pulled off Madz's site, and
      carries rel="noopener" WITHOUT noreferrer: the referrer is the whole point, it's how
      smarterflow.ca sees which of these sites sent the visit.
      This home page does not link /site.css — it carries its own copy of the navy footer rules,
      so the same block lives in both files and has to be changed in both. */
-  .built-by{flex-basis:100%;order:5;text-align:center;font-size:.68rem;line-height:1.6;
-    letter-spacing:.04em;text-transform:none;color:var(--cream-dim);opacity:.5;margin-top:10px}
+  .built-by{flex-basis:100%;order:5;text-align:center;font-size:.84rem;line-height:1.7;
+    letter-spacing:.03em;text-transform:none;color:var(--cream-dim);opacity:.8;margin-top:14px}
   .built-by a{color:var(--gold);border-bottom:1px solid rgba(200,162,76,.3);padding-bottom:1px;
     transition:color .3s var(--ease),border-color .3s var(--ease)}
   .built-by a:hover{color:var(--gold-light);border-bottom-color:rgba(231,203,134,.6)}
