@@ -151,7 +151,13 @@
   .flightpath path{stroke-dasharray:6 10;animation:dash 40s linear infinite}
   @keyframes dash{to{stroke-dashoffset:-800}}
 
-  .hero-inner{position:relative;z-index:3;padding:150px 0 90px}
+  /* The hero is 100vh with its content vertically CENTRED, so the padding here is a
+     bias, not a gap: whatever you add to the top gets split with the bottom. Top-heavy
+     padding (150/90) parked the eyebrow ~164px below the fixed header on a laptop and
+     wasted the first screenful. Flipping the bias lifts the whole block ~50px while
+     still leaving clearance under the 86px header on short screens, where the content
+     overflows and this top value IS the gap. */
+  .hero-inner{position:relative;z-index:3;padding:110px 0 150px}
   /* Hero: pen set (left) · headline (centre) · Madz (right). The compass that used to
      sit here moved down to the contact section — it was designed as a backdrop and was
      competing with the photos. */
