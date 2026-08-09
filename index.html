@@ -347,6 +347,14 @@
   /* The credential gets its own centred row: with the regulator's mark added, brand +
      credential + copyright on one line crowded the copyright onto a ragged second row. */
   .foot .tico{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:14px;flex-wrap:wrap;justify-content:center;flex-basis:100%;order:3;margin-top:2px}
+  /* The registrant disclosure. TICO requires an outside sales rep's own branded site to carry
+     the HOST agency's business name, address and registration number; Madz's certificate number
+     sits above it and is a personal credential, not a substitute. Sentence case and full width
+     on purpose — this is a legal disclosure and has to read as prose, not as a tracked-out badge
+     like the credential line it follows. */
+  .tico-reg{flex-basis:100%;order:4;text-align:center;font-size:.7rem;line-height:1.65;
+    letter-spacing:.02em;text-transform:none;color:var(--cream-dim);opacity:.72;margin-top:6px}
+  
   .tico-mark{display:inline-flex;background:#fff;border-radius:4px;padding:7px 10px;line-height:0;box-shadow:0 6px 18px -8px rgba(0,0,0,.55);transition:transform .3s var(--ease)}
   .tico-mark:hover{transform:translateY(-2px)}
   .tico-mark img{height:30px;width:auto;display:block}
@@ -422,13 +430,16 @@
   "currenciesAccepted": "CAD",
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "5 Finnegan Place",
-    "addressLocality": "Whitby",
+    "streetAddress": "202-325A West Street",
+    "addressLocality": "Brantford",
     "addressRegion": "ON",
-    "postalCode": "L1R 2G2",
+    "postalCode": "N3R 3V6",
     "addressCountry": "CA"
   },
   "areaServed": [
+    { "@type": "City", "name": "Whitby" },
+    { "@type": "Place", "name": "Durham Region" },
+    { "@type": "Place", "name": "Greater Toronto Area" },
     { "@type": "Country", "name": "Canada" },
     { "@type": "Place", "name": "Worldwide destinations" }
   ],
@@ -473,7 +484,7 @@
       "name": "Is Madz Travel TICO certified?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. Madz Travel is a TICO-certified travel practice (Certificate No. T123460987) affiliated with TravelOnly, so every booking is backed by Ontario's Travel Industry Council consumer protection and full financial coverage."
+        "text": "Yes. Madz is TICO certified (Certificate No. T123460987), and every booking is made through TravelOnly, TICO Reg. #4316071 — so your trip is backed by Ontario's Travel Industry Act consumer protection."
       }
     },
     {
@@ -505,7 +516,7 @@
       "name": "Is my trip financially protected?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Absolutely. Through TICO certification and TravelOnly's supplier relationships, your payments and bookings are financially protected, and travel insurance options are available for added peace of mind."
+        "text": "Absolutely. Every booking is made under TravelOnly's TICO registration (#4316071), so your payments are protected by Ontario's Travel Industry Compensation Fund — and travel insurance options are available for added peace of mind."
       }
     }
   ]
@@ -710,7 +721,7 @@
         <dl>
           <div><dt>Certificate No.</dt><dd>T123460987</dd></div>
         </dl>
-        <p class="note">Bookings are made and financially protected under TravelOnly&rsquo;s TICO registration, backed by Ontario&rsquo;s Travel Industry Compensation Fund.</p>
+        <p class="note">Bookings are made and financially protected under TravelOnly&rsquo;s TICO registration (#4316071), backed by Ontario&rsquo;s Travel Industry Compensation Fund.</p>
       </div>
     </figure>
    </div>
@@ -790,7 +801,7 @@
       </details>
       <details class="faq-item">
         <summary><h3>Is Madz Travel TICO certified?</h3><span class="pm"></span></summary>
-        <div class="ans">Yes. Madz Travel is a TICO-certified travel practice — Certificate No. T123460987 — affiliated with TravelOnly, so every booking is backed by Ontario's Travel Industry Council consumer protection and full financial coverage.</div>
+        <div class="ans">Yes. Madz is TICO certified (Certificate No. T123460987), and every booking is made through TravelOnly, TICO Reg. #4316071 — so your trip is backed by Ontario's Travel Industry Act consumer protection.</div>
       </details>
       <details class="faq-item">
         <summary><h3>What types of trips can you book?</h3><span class="pm"></span></summary>
@@ -806,7 +817,7 @@
       </details>
       <details class="faq-item">
         <summary><h3>Is my trip financially protected?</h3><span class="pm"></span></summary>
-        <div class="ans">Absolutely. Through TICO certification and TravelOnly's supplier relationships, your payments and bookings are financially protected, and travel insurance options are available for added peace of mind.</div>
+        <div class="ans">Absolutely. Every booking is made under TravelOnly's TICO registration (#4316071), so your payments are protected by Ontario's Travel Industry Compensation Fund — and travel insurance options are available for added peace of mind.</div>
       </details>
     </div>
   </div>
@@ -839,7 +850,7 @@
         <a href="mailto:madz@madztravel.ca"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg><span><span class="lbl">Email</span><span class="val">madz@madztravel.ca</span></span></a>
         <a href="mailto:bookings@madztravel.ca"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/><path d="M9 12l2 2 4-4"/></svg><span><span class="lbl">Bookings &amp; Confirmations</span><span class="val">bookings@madztravel.ca</span></span></a>
         <a href="https://madztravel.ca" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg><span><span class="lbl">Website</span><span class="val">madztravel.ca</span></span></a>
-        <div><svg viewBox="0 0 24 24"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span><span class="lbl">Address · Serving Canada &amp; Beyond</span><span class="val">5 Finnegan Place, Whitby, ON L1R 2G2</span></span></div>
+        <div><svg viewBox="0 0 24 24"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span><span class="lbl">Address · Serving Canada &amp; Beyond</span><span class="val">Serving Whitby, Durham Region &amp; the GTA</span></span></div>
       </div>
     </div>
 
@@ -875,6 +886,7 @@
          footer never depends on their server being up. It sits on a white plate because
          the logo is dark artwork and would vanish against the navy. -->
     <div class="tico"><a class="tico-mark" href="https://www.tico.ca/" target="_blank" rel="noopener noreferrer"><img src="/tico-logo.png" width="362" height="112" alt="TICO — Ontario's travel regulator" loading="lazy"></a>TICO Certified · Cert. No. T123460987 · Affiliated with TravelOnly®</div>
+    <div class="tico-reg">Travel services are sold through TravelOnly &mdash; TICO Reg. #4316071 &mdash; 202&ndash;325A West Street, Brantford, ON N3R 3V6.</div>
     <p>© <span id="yr"></span> Madz Travel. All rights reserved.</p>
   </div>
   <div class="foot-legal">

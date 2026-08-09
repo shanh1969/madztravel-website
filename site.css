@@ -105,3 +105,11 @@ footer{background:var(--navy-deep);border-top:1px solid rgba(200,162,76,.16);pad
 .tico-mark:hover{transform:translateY(-2px)}
 .tico-mark img{height:30px;width:auto;display:block}
 .version-bar{background:#000;text-align:center;padding:10px 0;font-size:.6rem;letter-spacing:.08em;color:rgba(255,255,255,.35)}
+
+/* The registrant disclosure. TICO requires an outside sales rep's own branded site to carry
+   the HOST agency's business name, address and registration number; Madz's certificate number
+   sits above it and is a personal credential, not a substitute. Sentence case and full width
+   on purpose — this is a legal disclosure and has to read as prose, not as a tracked-out badge
+   like the credential line it follows. */
+.tico-reg{flex-basis:100%;order:4;text-align:center;font-size:.7rem;line-height:1.65;
+  letter-spacing:.02em;text-transform:none;color:var(--cream-dim);opacity:.72;margin-top:6px}
