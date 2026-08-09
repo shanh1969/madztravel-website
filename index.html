@@ -354,7 +354,19 @@
      like the credential line it follows. */
   .tico-reg{flex-basis:100%;order:4;text-align:center;font-size:.7rem;line-height:1.65;
     letter-spacing:.02em;text-transform:none;color:var(--cream-dim);opacity:.72;margin-top:6px}
-  
+  /* Builder credit. Deliberately the quietest line in the footer and ordered LAST, below the
+     regulator disclosure — nothing here may compete with the TICO block a visitor is meant to
+     read. The link opens in a new tab so a curious reader is never pulled off Madz's site, and
+     carries rel="noopener" WITHOUT noreferrer: the referrer is the whole point, it's how
+     smarterflow.ca sees which of these sites sent the visit.
+     This home page does not link /site.css — it carries its own copy of the navy footer rules,
+     so the same block lives in both files and has to be changed in both. */
+  .built-by{flex-basis:100%;order:5;text-align:center;font-size:.68rem;line-height:1.6;
+    letter-spacing:.04em;text-transform:none;color:var(--cream-dim);opacity:.5;margin-top:10px}
+  .built-by a{color:var(--gold);border-bottom:1px solid rgba(200,162,76,.3);padding-bottom:1px;
+    transition:color .3s var(--ease),border-color .3s var(--ease)}
+  .built-by a:hover{color:var(--gold-light);border-bottom-color:rgba(231,203,134,.6)}
+
   .tico-mark{display:inline-flex;background:#fff;border-radius:4px;padding:7px 10px;line-height:0;box-shadow:0 6px 18px -8px rgba(0,0,0,.55);transition:transform .3s var(--ease)}
   .tico-mark:hover{transform:translateY(-2px)}
   .tico-mark img{height:30px;width:auto;display:block}
@@ -888,6 +900,7 @@
     <div class="tico"><a class="tico-mark" href="https://www.tico.ca/" target="_blank" rel="noopener noreferrer"><img src="/tico-logo.png" width="362" height="112" alt="TICO — Ontario's travel regulator" loading="lazy"></a>TICO Certified · Cert. No. T123460987 · Affiliated with TravelOnly®</div>
     <div class="tico-reg">Travel services are sold through TravelOnly &mdash; TICO Reg. #4316071 &mdash; 202&ndash;325A West Street, Brantford, ON N3R 3V6.</div>
     <p>© <span id="yr"></span> Madz Travel. All rights reserved.</p>
+    <div class="built-by">Website &amp; AI assistant by <a href="https://smarterflow.ca/?ref=madztravel" target="_blank" rel="noopener">SmarterFlow Systems</a></div>
   </div>
   <div class="foot-legal">
     <a href="/about.html">About Madz</a><span class="sep">·</span>
