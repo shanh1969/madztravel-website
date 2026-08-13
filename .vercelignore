@@ -1,0 +1,6 @@
+# Kept out of the deployment so they are never served from madztravel.ca.
+# The hold pages are copied over the real pages by scripts/site-switch.sh
+# before the commit is pushed, so _hold/ itself is not needed at build time.
+_hold/
+scripts/
+hooks/
