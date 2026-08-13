@@ -5,8 +5,8 @@
    environment are stamped as attributes, never shown on the line.
    ============================================================ */
 (function () {
-  var LABEL = "1.028";
-  var BUILD = "2026-08-13 4911c2c";
+  var LABEL = "1.029";
+  var BUILD = "2026-08-13 f71ad4c";
   var DATE  = "2026-08-13";
   document.querySelectorAll(".version-bar").forEach(function (el) {
     el.textContent = LABEL;

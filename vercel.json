@@ -3,25 +3,11 @@
   "outputDirectory": ".",
   "headers": [
     {
-      "source": "/version.js",
+      "source": "/(.*)",
       "headers": [
+        { "key": "X-Robots-Tag", "value": "noindex, nofollow" },
         { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
       ]
     }
-  ],
-  "redirects": [
-    { "source": "/travel-portal", "destination": "/app/madztravel/travel", "permanent": false },
-    { "source": "/card", "destination": "/", "permanent": false },
-    { "source": "/fb", "destination": "https://www.facebook.com/profile.php?id=61592821211030", "permanent": false },
-    { "source": "/ig", "destination": "/", "permanent": false }
-  ],
-  "rewrites": [
-    { "source": "/app/:path*", "destination": "https://smarterflow.ca/app/:path*" },
-    { "source": "/travel/:path*", "destination": "https://smarterflow.ca/travel/:path*" },
-    { "source": "/portal/:path*", "destination": "https://smarterflow.ca/portal/:path*" },
-    { "source": "/auth", "destination": "https://smarterflow.ca/auth" },
-    { "source": "/assets/:path*", "destination": "https://smarterflow.ca/assets/:path*" },
-    { "source": "/lovable-uploads/:path*", "destination": "https://smarterflow.ca/lovable-uploads/:path*" },
-    { "source": "/manifest.json", "destination": "https://smarterflow.ca/manifest.json" }
   ]
 }
