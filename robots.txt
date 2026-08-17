@@ -1,3 +1,17 @@
-# Site is on brand-registration hold. Nothing here should be indexed.
 User-agent: *
-Disallow: /
+Allow: /
+
+# AI search crawlers explicitly welcomed
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://madztravel.ca/sitemap.xml
